@@ -7,27 +7,37 @@ body {
   height: 100vh;
   width: 100%;
   margin: 0;
-/*  grid-template-columns: repeat(3, 1fr);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   grid-template-areas: 
     "header header header"
     "nav main main";
-}*/
+}
 
--------------- HEADER ---------------
+/*-------------- HEADER ---------------*/
 
-/*header {
+.top-header {
   display: flex;
+  justify-content: space-between;
+  background-color: #1F1F3D;
   grid-area: header;
-}*/
+}
 
 h1 {
+  color: #FFFFFF;
+  margin-left: 25px;
+}
+
+#yo {
+  color: #FFC30C;
 }
 
 .search {
-  height: 40px;
+  height: 50px;
   text-align: center;
   display: flex;
   width: 300px;
+  margin-top: 23px;
 }
 
 #search-button {
@@ -51,14 +61,100 @@ h1 {
 }
 
 
----------------- NAV ----------------
-/*nav {
+/*---------------- NAV ----------------*/
+
+nav {
+  background-color: #587A8A;  
+  width: 100%;
+  height: 100vh;
   grid-area: nav;
+}
 
-}*/
+.nav-content{
+  margin-top: 15px;
+  margin-left: 15px;
 
---------------- MAIN ----------------
-/*main {
+}
+
+h2 {
+   color: lightgrey;
+   font-weight: 400;
+   font-size: .8em;
+   margin-left: 10px;
+   margin-bottom: 1px;
+}
+
+input {
+  width: 300px;
+  height:35px;
+  border: 1px solid #1F1F3D;
+  border-radius: 3px;
+  margin-left: 10px;
+}
+
+.input-small {
+  width: 250px;
+}
+
+.nav-buttons {
+  width: 300px;
+  background-color: #1F1F3D;
+  color: #FFFFFF;
+  height: 40px;
+  font-size: 1.2em;
+  text-align: center;
+  margin: 15px;
+  border: none;
+  margin-left: 10px;
+}
+
+.add-task-input-and-button {
+  height: 50px;
+  display: flex;
+  width: 310px;
+}
+
+#task-item-input {
+  border-bottom-left-radius: 3px;
+  border-top-left-radius: 3px;
+  border-bottom-right-radius: 0px;
+  border-top-right-radius: 0px;
+  width: 100%;
+}
+
+#add-task-item-button {
+  background-color: #1F1F3D;
+  height: 35px;  
+  width: 15%;
+  padding: 1%;
+  border-bottom-right-radius: 0px;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  border-top-right-radius: 3px;
+}
+
+#make-task-list-button{
+  margin-bottom: 5px;
+}
+
+#clear-all-button {
+  margin-bottom: 35px;
+}
+
+#filter-by-urgency-button{
+  margin-top: 35px;
+  margin-left: 20px;
+}
+
+.button-pack {
+  border-top: 2px solid #3C6577;
+  margin-left: -10px;
+
+}
+/*--------------- MAIN ----------------*/
+main {
+  background-color: #F3F6F7;
   grid-area: main;
 
-}*/
+
+}

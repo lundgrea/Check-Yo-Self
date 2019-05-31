@@ -2,31 +2,36 @@
 <html lang="en">
   <head>
     <title>Check Yo'Self</title>
-    <!-- <link rel="normalize-stylesheet" type="text/css" href="normalize.css"> -->
+<!--     </head link rel="reset-stylesheet" type="text/css" href="reset.css">
+ -->    <link rel="normalize-stylesheet" type="text/css" href="normalize.css">
     <link rel="stylesheet" type="text/css" href="styles.css">
     <meta charset="UTF-8">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,800&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
   <body>
-    <header>
-      <h1>Check Yo' Self</h1>
+    <header class="top-header">
+      <h1>CHECK <span id="yo">YO'</span> SELF</h1>
       <div class="search">
         <img src="images/search.svg" alt="Search Button" id="search-button">
         <input type="text" placeholder="Search" class="input input-small" id="search-input" >
       </div>
     </header>
     <nav>
-      <h2>Task Title</h2>
-      <input type="text" class="input" id="task-title-input">
-      <h2>Task Item</h2>
-      <div>
-        <input type="text" class="input input-small" id="task-item-input">
-        <img src="images/NEED" alt="Add Task Item Button" id="add-task-item-button">
-      </div>
-      <button disabled class="nav-buttons" id="make-task-list-button">Make Task List</button>
-      <button disabled class="nav-buttons" id="clear-all-button">Clear All</button>
-      <button disabled class="nav-buttons" id="filter-by-urgency-button">Filter by Urgency</button>
+      <section class="nav-content">
+        <h2>Task Title</h2>
+        <input type="text" class="input" id="task-title-input">
+        <h2>Task Item</h2>
+        <div class="add-task-input-and-button">
+          <input type="text" class="input input-small" id="task-item-input">
+          <img src="images/plus.svg" alt="Add Task Item Button" id="add-task-item-button">
+        </div>
+        <button disabled class="nav-buttons" id="make-task-list-button">Make Task List</button>
+        <button disabled class="nav-buttons" id="clear-all-button">Clear All</button>
+        <section class="button-pack">
+          <button disabled class="nav-buttons" id="filter-by-urgency-button">Filter by Urgency</button>
+        </section>
+      </section>
     </nav>
     <main id=main>
       <article>
