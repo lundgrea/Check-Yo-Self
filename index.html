@@ -6,7 +6,7 @@
  -->    <link rel="normalize-stylesheet" type="text/css" href="normalize.css">
     <link rel="stylesheet" type="text/css" href="styles.css">
     <meta charset="UTF-8">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,800&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
   <body>
@@ -14,7 +14,7 @@
       <h1>CHECK <span id="yo">YO'</span> SELF</h1>
       <div class="search">
         <img src="images/search.svg" alt="Search Button" id="search-button">
-        <input type="text" placeholder="Search" class="input input-small" id="search-input" >
+        <input type="text" placeholder="Search" class="input" id="search-input" >
       </div>
     </header>
     <nav>
@@ -23,7 +23,7 @@
         <input type="text" class="input" id="task-title-input">
         <h2>Task Item</h2>
         <div class="add-task-input-and-button">
-          <input type="text" class="input input-small" id="task-item-input">
+          <input type="text" class="input" id="task-item-input">
           <img src="images/plus.svg" alt="Add Task Item Button" id="add-task-item-button">
         </div>
         <button disabled class="nav-buttons" id="make-task-list-button">Make Task List</button>
@@ -34,19 +34,29 @@
       </section>
     </nav>
     <main id=main>
-      <article>
-        <header>
-          <h3 id="todo-title-output">TILE INPUT TO COME</h3>
+      <article class="card">
+        <header class="main__article__header">
+          <h3 id="todo-title-output">Task Title</h3>
         </header>
         <section>
           <span class="task" id="${}">
             <svg alt="Completed Checkmark Area" id="checkbox-image"></svg>
-            <p>TO COME</p>
+            <p>Don't ever play yourself.</p>
+          </span>
+          <span class="task" id="${}">
+            <svg alt="Completed Checkmark Area" id="checkbox-image"></svg>
+            <p>Every chance I get I water the plants.</p>
           </span>
         </section>
         <footer>
-          <svg alt="Urgent Button" id="urgent-image"></svg>
-          <svg alt="Delete Button" id="delete-image"></svg>
+          <div class="card_footer_buttons">
+            <svg alt="Urgent Button" class="card_footer-images" id="urgent-image"></svg>
+            <h4>URGENT</h4>
+          </div>
+          <div class="card_footer_buttons">
+            <svg alt="Delete Button" class="card_footer-images" id="delete-image"></svg>
+            <h4>DELETE</h4>
+          </div>
         </footer>
       </article>
      <!--  <p id="user-prompt-text">Enter A New To Do</p> -->
