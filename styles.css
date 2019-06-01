@@ -103,11 +103,9 @@ input {
   color: #FFFFFF;
   height: 40px;
   font-size: 1.2em;
-  font-weight: 400;
   text-align: center;
   margin: 15px;
   border: none;
-  margin-left: 10px;
 }
 
 .add-task-input-and-button {
@@ -148,12 +146,10 @@ input {
 
 #filter-by-urgency-button{
   margin-top: 35px;
-  margin-left: 20px;
 }
 
 .button-pack {
   border-top: 2px solid #3C6577;
-  margin-left: -10px;
 
 }
 /*--------------- MAIN ----------------*/
@@ -161,43 +157,27 @@ main {
   background-color: #F3F6F7;
   grid-area: main;
   display: flex;
-  flex-direction: columns;
+  flex-direction: column;
   border: 2px solid green;
   column-count: 2;
   column-gap: 1rem;
-
+  height: 100vh;
+  flex: 1 auto;
+  width: 50%;
+  margin-bottom: 10px;
 
 }
 
 .card {
-/*  min-width: 200px;
-/**/  padding: 10px;
   border: 1px solid #C8D3D9;
-  background: #FAFDFFa;
-  max-width: 300px;
-      margin: 30px;
-  padding: 2px;
-
-
-/*  height: 500px;
-*/  
-
-
+  background: #FAFDFF;
+  margin: 30px;
+  padding: 3px;
+   break-inside: avoid;
+   box-sizing: content-box; 
+   object-fit: fill;
+    height: 280px;
 }
-
-/*#card-body {
-  height: 74%;
-  color: #1F1F3D;
-  padding: 20px 15px 20px 15px;
-  background-color: #FFFFFF;
-}*/
-
-/*article {
-  border: 2px solid #C8D3D9;
-  max-width: 50%;
-  padding: 20px;
-  max-height: 50px;
-}*/
 
 .main__article__header {
   border-bottom: 2px solid #C8D3D9;
@@ -205,20 +185,25 @@ main {
 
 h3 {
 font-weight: 600;
-margin-top: .1em;
 margin-bottom: .7em;
-
+margin-left: .5em;
+margin-top: .5em;
+  color: #1F1F3D;
 
 }
 
 h4{
   font-weight: 600;
   font-size: .7em;
-
+  margin-bottom: 10px;
+    margin-top: 0px;
+    color: #587A8A;
 }
 .task {
   display: flex;
   margin-top: 15px;
+  margin-left: 15px;
+  margin-right: 15px;
 
 }
 #checkbox-image {
@@ -227,10 +212,13 @@ h4{
   margin-top: 6px;
   background: url(images/checkbox.svg) no-repeat;
 }
-p{
+
+p {
   margin-top: 5px;
   margin-left: 10px; 
-  font-size: 1.3em;
+  font-size: 1.25em;
+    color: #1F1F3D;
+
 }
 
 #checkbox-image:hover {
@@ -239,18 +227,32 @@ p{
 
 footer {
   display: flex;
-  border-top: 2px solid black;
+  border-top: 2px solid #C8D3D9;
   justify-content: space-between;
+  margin-top: 0px;
 }
 
-.card_footer_buttons {
+.card__footer__buttons {
   margin: auto;
+    margin-top: 10px;
 }
+
+.card__footer__buttons__urgent{
+    margin-left: 20px;
+}
+
+.card__footer__buttons__delete{
+    margin-right: 20px;
+}
+
+
 
 #urgent-image {
   height: 30px;
   width: 30px;
   background: url(images/urgent.svg) no-repeat;
+    margin-left: 8px;
+
 }
 
 #urgent-image:hover {
@@ -260,7 +262,9 @@ footer {
 #delete-image {
   height: 30px;
   width: 30px;
-  background: url(images/delete.svg) no-repeat;
+  background: url(images/delete.svg) no-repeat;          margin-left: 6px;
+
+
 }
 #delete-image:hover {
   background: url(images/delete-active.svg) no-repeat;
