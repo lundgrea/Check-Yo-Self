@@ -26,7 +26,7 @@ body {
 
 h1 {
   color: #FFFFFF;
-  margin-left: 15px;
+  margin-left: 25px;
   font-size: 2.3em;
   margin-top: 10px;
 }
@@ -87,6 +87,29 @@ h2 {
    margin-bottom: 4px;
 }
 
+
+.nav__section-task-list {
+color: #FFFFFF;
+margin-left: 15px;
+}
+
+.nav__section-task-item {
+  display: flex;
+  margin-top: 15px;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+.nav__section__task-image {
+  height: 25px;
+  width: 25px;
+  margin-top: 6px;
+  background: url(images/delete-list-item.svg) no-repeat;
+}
+
+.nav_section_task{
+color: #ffffff;
+
+}
 .body__input {
   width: 300px;
   height: 45px;
@@ -135,6 +158,10 @@ h2 {
 
 #nav__section__button-make-task-list {
   margin-bottom: 5px;
+}
+
+#nav__section__button-make-task-list:disabled {
+  background-color: lightgrey;
 }
 
 #nav__section__button-clear-all {

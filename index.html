@@ -2,8 +2,7 @@
 <html lang="en">
   <head>
     <title>Check Yo'Self</title>
-<!--     </head link rel="reset-stylesheet" type="text/css" href="reset.css">
- -->    <link rel="normalize-stylesheet" type="text/css" href="normalize.css">
+    <link rel="normalize-stylesheet" type="text/css" href="normalize.css">
     <link rel="stylesheet" type="text/css" href="styles.css">
     <meta charset="UTF-8">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,800&display=swap" rel="stylesheet">
@@ -21,6 +20,8 @@
       <section class="nav__section">
         <h2>Task Title</h2>
         <input type="text" class="body__input" id="nav__section__input-task-title">
+        <section class="nav__section-task-list" id="nav__section-task-list">
+        </section>
         <h2>Task Item</h2>
         <div class="nav__section-div">
           <input type="text" class="body__input" id="nav__section__input-task-item">
@@ -34,34 +35,10 @@
       </section>
     </nav>
     <main id="main">
-      <article class="main__article">
-        <header class="main__article__header">
-          <h3 id="todo-title-output">Task Title</h3>
-        </header>
-        <section>
-          <span class="main__article__header-span" id="${}">
-            <svg alt="Completed Checkmark Area" class="main__article__section__image-checkbox"></svg>
-            <p>Don't ever play yourself.</p>
-          </span>
-          <span class="main__article__header-span" id="${}">
-            <svg alt="Completed Checkmark Area" class="main__article__section__image-checkbox"></svg>
-            <p>Every chance I get I water the plants.</p>
-          </span>
-        </section>
-        <footer>
-          <div class="main__article__footer__images main__article__footer__images-urgent">
-            <svg alt="Urgent Button" id="main__article__footer__image-urgent"></svg>
-            <h4>URGENT</h4>
-          </div>
-          <div class="main__article__footer__images main__article__footer__images-delete">
-            <svg alt="Delete Button" id="main__article__footer__image-delete"></svg>
-            <h4>DELETE</h4>
-          </div>
-        </footer>
-      </article>
-     <!--  <p id="user-prompt-text">Enter A New To Do</p> -->
+      
+      <p id="main__p-prompt">Enter A New To Do</p>
     </main>
   </body>
-      <script type="text/javascript" src="to-do-list.js"></script>
+    <script type="text/javascript" src="to-do-list.js"></script>
     <script type="text/javascript" src="main.js"></script>
 </html>
