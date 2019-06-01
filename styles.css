@@ -16,7 +16,7 @@ body {
 
 /*-------------- HEADER ---------------*/
 
-.top-header {
+.header__header {
   display: flex;
   justify-content: space-between;
   background-color: #1F1F3D;
@@ -31,18 +31,18 @@ h1 {
   margin-top: 10px;
 }
 
-#yo {
+#header__h1 {
   color: #FFC30C;
 }
 
-.search {
+.header__div-search {
   display: flex;
   width: 350px;
   margin-top: 12px;
   margin-right: 10px;
 }
 
-#search-button {
+#header__img-search {
   height: 45px;
   width: 13%;
   padding: 3%;
@@ -51,7 +51,7 @@ h1 {
   border-top-left-radius: 3px;
 }
 
-#search-input {
+#header__input-search {
   font-size: 1em;
   margin: 0;
   padding: 5px;
@@ -74,10 +74,9 @@ nav {
   grid-area: nav;
 }
 
-.nav-content{
+.nav__section{
   margin-top: 15px;
   margin-left: 15px;
-
 }
 
 h2 {
@@ -88,7 +87,7 @@ h2 {
    margin-bottom: 4px;
 }
 
-input {
+.body__input {
   width: 300px;
   height: 45px;
   border: 1px solid #1F1F3D;
@@ -97,7 +96,7 @@ input {
   margin-bottom: 15px;
 }
 
-.nav-buttons {
+.nav__section__buttons {
   width: 300px;
   background-color: #1F1F3D;
   color: #FFFFFF;
@@ -108,21 +107,20 @@ input {
   border: none;
 }
 
-.add-task-input-and-button {
+.nav__section-div {
   height: 50px;
   display: flex;
   width: 310px;
 }
 
-#task-item-input {
+#nav__section__input-task-title {
   border-bottom-left-radius: 3px;
   border-top-left-radius: 3px;
   border-bottom-right-radius: 0px;
   border-top-right-radius: 0px;
-  width: 100%;
 }
 
-#add-task-item-button {
+#nav__section__button-add-task-item {
   background-color: #1F1F3D;
   height: 45px;  
   padding: 1%;
@@ -133,22 +131,21 @@ input {
   padding: 2%;
   border: none;
   width: 47px;
-
 }
 
-#make-task-list-button{
+#nav__section__button-make-task-list {
   margin-bottom: 5px;
 }
 
-#clear-all-button {
+#nav__section__button-clear-all {
   margin-bottom: 35px;
 }
 
-#filter-by-urgency-button{
+#nav__section__button-filter-by-urgency {
   margin-top: 35px;
 }
 
-.button-pack {
+.nav__section_button-bottom {
   border-top: 2px solid #3C6577;
 
 }
@@ -168,7 +165,7 @@ main {
 
 }
 
-.card {
+.main__article {
   border: 1px solid #C8D3D9;
   background: #FAFDFF;
   margin: 30px;
@@ -199,14 +196,14 @@ h4{
     margin-top: 0px;
     color: #587A8A;
 }
-.task {
+.main__article__header-span {
   display: flex;
   margin-top: 15px;
   margin-left: 15px;
   margin-right: 15px;
 
 }
-#checkbox-image {
+.main__article__section__image-checkbox {
   height: 20px;
   width: 20px;
   margin-top: 6px;
@@ -221,7 +218,7 @@ p {
 
 }
 
-#checkbox-image:hover {
+#main__article__section__image-checkbox:hover {
   background: url(images/checkbox-active.svg) no-repeat;
 }
 
@@ -232,40 +229,37 @@ footer {
   margin-top: 0px;
 }
 
-.card__footer__buttons {
+.main__article__footer__images {
   margin: auto;
-    margin-top: 10px;
+  margin-top: 10px;
 }
 
-.card__footer__buttons__urgent{
+.main__article__footer__images-urgent{
     margin-left: 20px;
 }
 
-.card__footer__buttons__delete{
+.main__article__footer__images-delete{
     margin-right: 20px;
 }
 
-
-
-#urgent-image {
+#main__article__footer__image-urgent {
   height: 30px;
   width: 30px;
   background: url(images/urgent.svg) no-repeat;
     margin-left: 8px;
-
 }
 
-#urgent-image:hover {
+#main__article__footer__image-urgent:hover {
   background: url(images/urgent-active.svg) no-repeat;
 }
 
-#delete-image {
+#main__article__footer__image-delete {
   height: 30px;
   width: 30px;
-  background: url(images/delete.svg) no-repeat;          margin-left: 6px;
-
-
+  background: url(images/delete.svg) no-repeat;
+  margin-left: 6px;
 }
-#delete-image:hover {
+
+#main__article__footer__image-delete:hover {
   background: url(images/delete-active.svg) no-repeat;
 }

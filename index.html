@@ -10,51 +10,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
   <body>
-    <header class="top-header">
-      <h1>CHECK <span id="yo">YO'</span> SELF</h1>
-      <div class="search">
-        <img src="images/search.svg" alt="Search Button" id="search-button">
-        <input type="text" placeholder="Search" class="input" id="search-input" >
+    <header class="header__header">
+      <h1>CHECK <span id="header__h1">YO'</span> SELF</h1>
+      <div class="header__div-search">
+        <img src="images/search.svg" alt="Search Button" id="header__img-search">
+        <input type="text" placeholder="Search" class="body__input" id="header__input-search" >
       </div>
     </header>
     <nav>
-      <section class="nav-content">
+      <section class="nav__section">
         <h2>Task Title</h2>
-        <input type="text" class="input" id="task-title-input">
+        <input type="text" class="body__input" id="nav__section__input-task-title">
         <h2>Task Item</h2>
-        <div class="add-task-input-and-button">
-          <input type="text" class="input" id="task-item-input">
-          <img src="images/plus.svg" alt="Add Task Item Button" id="add-task-item-button">
+        <div class="nav__section-div">
+          <input type="text" class="body__input" id="nav__section__input-task-item">
+          <img src="images/plus.svg" alt="Add Task Item Button" id="nav__section__button-add-task-item">
         </div>
-        <button disabled class="nav-buttons" id="make-task-list-button">Make Task List</button>
-        <button disabled class="nav-buttons" id="clear-all-button">Clear All</button>
-        <section class="button-pack">
-          <button disabled class="nav-buttons" id="filter-by-urgency-button">Filter by Urgency</button>
+        <button disabled class="nav__section__buttons" id="nav__section__button-make-task-list">Make Task List</button>
+        <button disabled class="nav__section__buttons" id="nav__section__button-clear-all">Clear All</button>
+        <section class="nav__section_button-bottom">
+          <button disabled class="nav__section__buttons" id="nav__section__button-filter-by-urgency">Filter by Urgency</button>
         </section>
       </section>
     </nav>
-    <main id=main>
-      <article class="card">
+    <main id="main">
+      <article class="main__article">
         <header class="main__article__header">
           <h3 id="todo-title-output">Task Title</h3>
         </header>
         <section>
-          <span class="task" id="${}">
-            <svg alt="Completed Checkmark Area" id="checkbox-image"></svg>
+          <span class="main__article__header-span" id="${}">
+            <svg alt="Completed Checkmark Area" class="main__article__section__image-checkbox"></svg>
             <p>Don't ever play yourself.</p>
           </span>
-          <span class="task" id="${}">
-            <svg alt="Completed Checkmark Area" id="checkbox-image"></svg>
+          <span class="main__article__header-span" id="${}">
+            <svg alt="Completed Checkmark Area" class="main__article__section__image-checkbox"></svg>
             <p>Every chance I get I water the plants.</p>
           </span>
         </section>
         <footer>
-          <div class="card__footer__buttons card__footer__buttons__urgent">
-            <svg alt="Urgent Button" class="card_footer-images" id="urgent-image"></svg>
+          <div class="main__article__footer__images main__article__footer__images-urgent">
+            <svg alt="Urgent Button" id="main__article__footer__image-urgent"></svg>
             <h4>URGENT</h4>
           </div>
-          <div class="card__footer__buttons card__footer__buttons__delete">
-            <svg alt="Delete Button" class="card_footer-images" id="delete-image"></svg>
+          <div class="main__article__footer__images main__article__footer__images-delete">
+            <svg alt="Delete Button" id="main__article__footer__image-delete"></svg>
             <h4>DELETE</h4>
           </div>
         </footer>
