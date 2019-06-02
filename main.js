@@ -26,12 +26,12 @@ function enableNavButtons(){
 }
 
 function disableNavButtons(){
-  if (toDoTitleInput.value === '' || taskInput.value === '') {
-    makeToDoButton.disabled = false;
-    clearAllButton.disabled = false;
-    addTaskButton.disabled = false;
+  if (toDoTitleInput.value === '' && workingTaskList.innerHTML !== '')
+  // if (toDoTitleInput.value === '' || taskInput.value === '') {
+    makeToDoButton.disabled = true;
+    clearAllButton.disabled = true;
+    addTaskButton.disabled = true;
   }
-}
 
 function clearTaskInput(){
   taskInput.value = '';
