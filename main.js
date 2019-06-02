@@ -39,6 +39,10 @@ function disableNavButtons(){
   }
 }
 
+function clearTaskInput(){
+  taskInput.value = '';
+}
+
 function clearButton(){
   event.preventDefault();
   toDoTitleInput.value = '';
@@ -59,12 +63,14 @@ function createTaskObject() {
 
 function appendTaskToList(task) {
   var taskId = task.id;
-  workingTaskList.insertAdjacentHTML('afterbegin', `<span class="nav__section-task-item" data-id="${task.id}">
+  var newListItem = 
+  `<span class="nav__section-task-item" data-id="${task.id}">
             <svg alt="Delete New Task Item" class="nav__section__task-image"></svg>
             <p class="nav_section_task">${task.taskContent}</p>
-            </span>`);
-  taskInput.value = '';
-  addTaskButton.disabled = true;
+            </span>`
+  workingTaskList.insertAdjacentHTML('afterbegin', newListItem);
+  clearTaskInput();
+  disableNavButtons();
 };
 
 function clearFields() {
@@ -105,29 +111,60 @@ function handleMakeTaskListButton(){
   disableNavButtons()
 }
 
+function populateTaskList(listedTasks){
+  var currentItemList = '';
+  for (var i =0; i < listedTasks.length; i++) {
+    currentItemList +=
+    `
+    // `
+
+    // <li class="list-item">
+    // <input type="checkbox" class="done-icon" data-id=${tasks.items[i].id} id=index${i}>
+    // <label for="id=index${i}" class="card-todo-item">${tasks.items[i].content}</label>
+    // </li>`
+
+
+
+    // <ul class="nav-list">
+    //   <li class="nav-list-item-holder"><input type="image" data-id="${info.id}" class="task-item-delete" src="images/delete.svg" height="15px">
+    //   ${info.content}</li>
+    //   </ul>
+
+
+
+
+
+
+
+  }
+ return currentItemList;
+}
+
 function appendToDoCard(toDo) {
   userPrompt.classList.add('hidden');
-  mainContent.insertAdjacentHTML('afterbegin', `<article class="main__article card" data-id="${toDo.id}">
+  var newCard = 
+  `<article class="main__article card" data-id="${toDo.id}">
         <header class="main__article__header">
-          <h3 id="todo-title-output">${toDo.title}</h3>
+          <h2 id="todo-title-output">${toDo.title}</h2>
         </header>
         <section>
           <span class="main__article__header-span">
             <svg alt="Completed Checkmark Area" class="main__article__section__image-checkbox"></svg>
-            <p>${appendTaskToList(toDo)}</p>
+            <p>${populateTaskList(toDo)}</p>
           </span>
         </section>
         <footer>
           <div class="main__article__footer__images main__article__footer__images-urgent">
             <svg alt="Urgent Button" id="main__article__footer__image-urgent"></svg>
-            <h4>URGENT</h4>
+            <h3>URGENT</h3>
           </div>
           <div class="main__article__footer__images main__article__footer__images-delete">
             <svg alt="Delete Button" id="main__article__footer__image-delete"></svg>
-            <h4>DELETE</h4>
+            <h3>DELETE</h3>
           </div>
         </footer>
-      </article>`);
+      </article>`
+  mainContent.insertAdjacentHTML('afterbegin', newCard);
 };
 
 function reappearPrompt() {

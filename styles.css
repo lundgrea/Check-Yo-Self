@@ -79,7 +79,7 @@ nav {
   margin-left: 15px;
 }
 
-h2 {
+label {
    color: lightgrey;
    font-weight: 400;
    font-size: .8em;
@@ -160,7 +160,7 @@ color: #ffffff;
   margin-bottom: 5px;
 }
 
-#nav__section__button-make-task-list:disabled {
+.nav__section__buttons:disabled {
   background-color: lightgrey;
 }
 
@@ -211,7 +211,7 @@ main {
   border-bottom: 2px solid #C8D3D9;
 }
 
-h3 {
+h2 {
 font-weight: 600;
 margin-bottom: .7em;
 margin-left: .5em;
@@ -220,7 +220,7 @@ margin-top: .5em;
 
 }
 
-h4{
+h3{
   font-weight: 600;
   font-size: .7em;
   margin-bottom: 10px;
