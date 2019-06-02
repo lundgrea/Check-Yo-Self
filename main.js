@@ -27,7 +27,6 @@ function enableNavButtons(){
 
 function disableNavButtons(){
   if (toDoTitleInput.value === '' && workingTaskList.innerHTML !== '')
-  // if (toDoTitleInput.value === '' || taskInput.value === '') {
     makeToDoButton.disabled = true;
     clearAllButton.disabled = true;
     addTaskButton.disabled = true;
@@ -37,7 +36,7 @@ function clearTaskInput(){
   taskInput.value = '';
 }
 
-function clearButton(){
+function clearButton() {
   event.preventDefault();
   toDoTitleInput.value = '';
   taskInput.value = ''
@@ -101,6 +100,7 @@ function reappearPrompt() {
 function clickHandler(event) {
   deleteToDoList(event);
   updateUrgencyButton(event)
+  updateCompletedButton(event)
 }
 
 function getToDoUniqueId(event) {
@@ -162,7 +162,7 @@ function populateTaskList(listedTasks){
   var currentItemList = '';
   for (var i =0; i < listedTasks.tasks.length; i++) {
     currentItemList +=
-      `<span class="main__article__header-span">
+      `<span class="main__article__header-span" data-id="${listedTasks.tasks[i].id}">
       <svg alt="Completed Checkmark Area" class="main__article__section__image-checkbox"></svg>
       <p>${listedTasks.tasks[i].taskContent}</p>
       </span>`
@@ -186,7 +186,7 @@ function deleteToDoList(event) {
 function updateUrgencyButton(event) {
   if (event.target.closest('#main__article__footer__image-urgent')) {
     var toDoId = getToDoUniqueId(event);
-    var toDoIndex = getToDoIndex(toDoId);
+    var toDoIndex = getToDoUniqueId(event);
     var urgentStatus = 'images/urgent-active.svg';
     var nonUrgent = document.querySelector(`.card[data-id="${toDoId}"] #main__article__footer__image-urgent`);
     nonUrgent.src = urgentStatus;
@@ -200,27 +200,43 @@ function updateUrgencyButton(event) {
   }
 }
 
+function getTaskUniqueId(event) {
+  return event.target.closest('.main__article__header-span').getAttribute('data-id');
+}
 
- function updateStarBtn(event) {
-  if (event.target.closest('#white-star-img')) {  
-    var cardId = getUniqueId(event);
-    var cardIndex = getCardIndex(cardId);
-    var yellowStar = 'images/star-active.svg'; 
-    var oldStar = document.querySelector(`.card[data-id="${cardId}"] #white-star-img`);
-    oldStar.src = yellowStar;
-    ideas[cardIndex].updateStar();
-  if (ideas[cardIndex].star === false) {
-    var whiteStar = 'images/star.svg';
-    oldStar.src = whiteStar;
-  } else {
-    oldStar.src = yellowStar;
-    }
-  }
+function getTaskIndex(uniqueTaskId) {
+
+
+  return toDos.tasks.findIndex(function(arrayObj) {
+  return arrayObj.tasks.id == parseInt(id);
+  })
 };
 
+function updateCompletedButton(event) {
+  if (event.target.closest('.main__article__section__image-checkbox')) {
+    var toDoId = getToDoUniqueId(event);
+    var toDoIndex = getToDoIndex(toDoId);
+    var taskId = getTaskUniqueId(event);
+    var taskIndex = getTaskIndex(taskId);
 
 
+    console.log('show me the money ', taskIndex)
 
+
+    
+
+    var completedStatus = 'images/checkbox-active.svg';
+    var incompleteStatus = document.querySelector(`#main__article__header-span[data-id="${taskId}"] #main__article__section__image-checkbox`);
+    incompleteStatus.src = completedStatus;
+    toDos[toDoIndex].tasks[taskIndex].updateTask(taskIndex);
+    if (toDos[toDoIndex].tasks[taskIndex].completed === false) {
+      var nonCompleted = 'images/checkbox.svg';
+      incompleteStatus.src = nonCompleted;
+    } else {
+      incompleteStatus.src = completedStatus
+    }
+  }
+}
 
 
 
