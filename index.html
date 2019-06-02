@@ -2,66 +2,42 @@
 <html lang="en">
   <head>
     <title>Check Yo'Self</title>
-<!--     </head link rel="reset-stylesheet" type="text/css" href="reset.css">
- -->    <link rel="normalize-stylesheet" type="text/css" href="normalize.css">
+    <link rel="normalize-stylesheet" type="text/css" href="normalize.css">
     <link rel="stylesheet" type="text/css" href="styles.css">
     <meta charset="UTF-8">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,800&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
   <body>
-    <header class="top-header">
-      <h1>CHECK <span id="yo">YO'</span> SELF</h1>
-      <div class="search">
-        <img src="images/search.svg" alt="Search Button" id="search-button">
-        <input type="text" placeholder="Search" class="input" id="search-input" >
+    <header class="header__header">
+      <h1>CHECK <span id="header__h1">YO'</span> SELF</h1>
+      <div class="header__div-search">
+        <img src="images/search.svg" alt="Search Button" id="header__img-search">
+        <input type="text" placeholder="Search" class="body__input" id="header__input-search" >
       </div>
     </header>
     <nav>
-      <section class="nav-content">
-        <h2>Task Title</h2>
-        <input type="text" class="input" id="task-title-input">
-        <h2>Task Item</h2>
-        <div class="add-task-input-and-button">
-          <input type="text" class="input" id="task-item-input">
-          <img src="images/plus.svg" alt="Add Task Item Button" id="add-task-item-button">
+      <section class="nav__section">
+        <label for="nav__section__input-task-title">Task Title</label>
+        <input type="text" class="body__input" id="nav__section__input-task-title">
+        <section class="nav__section-task-list" id="nav__section-task-list">
+        </section>
+        <label for="nav__section__input-task-item">Task Item</label>
+        <div class="nav__section-div">
+          <input type="text" class="body__input" id="nav__section__input-task-item">
+          <img src="images/plus.svg" alt="Add Task Item Button" id="nav__section__button-add-task-item">
         </div>
-        <button disabled class="nav-buttons" id="make-task-list-button">Make Task List</button>
-        <button disabled class="nav-buttons" id="clear-all-button">Clear All</button>
-        <section class="button-pack">
-          <button disabled class="nav-buttons" id="filter-by-urgency-button">Filter by Urgency</button>
+        <button disabled class="nav__section__buttons" id="nav__section__button-make-task-list">Make Task List</button>
+        <button disabled class="nav__section__buttons" id="nav__section__button-clear-all">Clear All</button>
+        <section class="nav__section_button-bottom">
+          <button disabled class="nav__section__buttons" id="nav__section__button-filter-by-urgency">Filter by Urgency</button>
         </section>
       </section>
     </nav>
-    <main id=main>
-      <article class="card">
-        <header class="main__article__header">
-          <h3 id="todo-title-output">Task Title</h3>
-        </header>
-        <section>
-          <span class="task" id="${}">
-            <svg alt="Completed Checkmark Area" id="checkbox-image"></svg>
-            <p>Don't ever play yourself.</p>
-          </span>
-          <span class="task" id="${}">
-            <svg alt="Completed Checkmark Area" id="checkbox-image"></svg>
-            <p>Every chance I get I water the plants.</p>
-          </span>
-        </section>
-        <footer>
-          <div class="card__footer__buttons card__footer__buttons__urgent">
-            <svg alt="Urgent Button" class="card_footer-images" id="urgent-image"></svg>
-            <h4>URGENT</h4>
-          </div>
-          <div class="card__footer__buttons card__footer__buttons__delete">
-            <svg alt="Delete Button" class="card_footer-images" id="delete-image"></svg>
-            <h4>DELETE</h4>
-          </div>
-        </footer>
-      </article>
-     <!--  <p id="user-prompt-text">Enter A New To Do</p> -->
+    <main id="main">
+      <p id="main__p-prompt">Enter A New To Do</p>
     </main>
   </body>
-      <script type="text/javascript" src="to-do-list.js"></script>
+    <script type="text/javascript" src="to-do-list.js"></script>
     <script type="text/javascript" src="main.js"></script>
 </html>
