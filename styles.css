@@ -131,6 +131,7 @@ color: #ffffff;
   margin: 15px;
   margin-left: 12px;
   border: none;
+  border-radius: 3px;
 }
 
 .nav__section-div {
@@ -196,7 +197,10 @@ main {
 }
 
 #main__p-prompt{
+}
 
+.italics{
+  font-style: italic;
 }
 
 .hidden{
