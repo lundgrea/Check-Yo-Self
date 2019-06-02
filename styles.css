@@ -192,6 +192,10 @@ main {
 
 }
 
+.hidden{
+  display: none;
+}
+
 .main__article {
   border: 1px solid #C8D3D9;
   background: #FAFDFF;
