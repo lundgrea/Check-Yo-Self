@@ -1,31 +1,21 @@
+var toDos = JSON.parse(localStorage.getItem('toDosArray')) || [];
+var taskList = []
 var toDoTitleInput = document.getElementById('nav__section__input-task-title');
 var taskInput = document.getElementById('nav__section__input-task-item');
-var workingTaskList = document.getElementById('nav__section-task-list')
+var makeToDoButton = document.getElementById('nav__section__button-make-task-list');
+var clearAllButton = document.getElementById('nav__section__button-clear-all');
 var addTaskButton = document.getElementById('nav__section__button-add-task-item');
-var makeToDoButton = document.getElementById('nav__section__button-make-task-list'); 
-var clearAll = document.getElementById('nav__section__button-clear-all');
-var card = document.getElementById('article');
-var mainContent = document.getElementById('main');
+var workingTaskList = document.getElementById('nav__section-task-list')
 var userPrompt = document.getElementById('main__p-prompt');
+var mainContent = document.getElementById('main');
 
-var toDos = JSON.parse(localStorage.getItem('toDosArray')) || [];
-
-toDoTitleInput.addEventListener('keyup', enableMakeTaskListButton);
-addTaskButton.addEventListener('click', addTaskButtonHandler);
+toDoTitleInput.addEventListener('keyup', enableNavButtons);
+taskInput.addEventListener('keyup', enableNavButtons);
+addTaskButton.addEventListener('click', createTaskObject);
 makeToDoButton.addEventListener('click', handleMakeTaskListButton);
-toDoTitleInput.addEventListener('focusout', initializeObject)
+clearAllButton.addEventListener('click', clearButton);
+main.addEventListener('click', clickHandler)
 window.addEventListener('load', mapLocalStorage(toDos))
-
-function enableMakeTaskListButton() {
-  makeToDoButton.disabled = false;
-  disableMakeTaskListButton();
-}
-
-function disableMakeTaskListButton() {
-  if (toDoTitleInput.value === '') {
-    makeToDoButton.disabled = true;
-  }
-}
 
 function mapLocalStorage(oldToDos) {
   var newToDos = oldToDos.map(function(object) {
@@ -34,6 +24,53 @@ function mapLocalStorage(oldToDos) {
   toDos = newToDos;
 };
 
+function enableNavButtons(){
+  makeToDoButton.disabled = false;
+  clearAllButton.disabled = false;
+  addTaskButton.disabled = false;
+  disableNavButtons();
+}
+
+function disableNavButtons(){
+  if (toDoTitleInput.value === '' || taskInput.value === '') {
+    makeToDoButton.disabled = false;
+    clearAllButton.disabled = false;
+    addTaskButton.disabled = false;
+  }
+}
+
+function clearButton(){
+  event.preventDefault();
+  toDoTitleInput.value = '';
+  taskInput.value = ''
+}
+
+function createTaskObject() {
+  event.preventDefault();
+  var newTask = {
+    id: Date.now(),
+    taskContent: taskInput.value,
+    completed: false
+  };
+  appendTaskToList(newTask);
+  taskList.push(newTask)
+  return newTask
+}
+
+function appendTaskToList(task) {
+  var taskId = task.id;
+  workingTaskList.insertAdjacentHTML('afterbegin', `<span class="nav__section-task-item" data-id="${task.id}">
+            <svg alt="Delete New Task Item" class="nav__section__task-image"></svg>
+            <p class="nav_section_task">${task.taskContent}</p>
+            </span>`);
+  taskInput.value = '';
+  addTaskButton.disabled = true;
+};
+
+function clearFields() {
+  toDoTitleInput.value = '';
+  taskInput.value = '';
+};
 
 function turnObjectIntoToDos(obj) {
   var toDoUniqueId = obj.id;
@@ -52,7 +89,6 @@ function turnObjectIntoToDos(obj) {
   return newToDo;
 };
 
-
 function handleMakeTaskListButton(){
   event.preventDefault();
   var newToDo = new ToDoList({
@@ -60,31 +96,25 @@ function handleMakeTaskListButton(){
     title: toDoTitleInput.value,
     urgent: false,
     completed: false,
-    tasks: 1
+    tasks: taskList
   });
   turnObjectIntoToDos(newToDo);
   toDos.push(newToDo);
   newToDo.saveToStorage(toDos);
   clearFields();
-  disableMakeTaskListButton()
+  disableNavButtons()
 }
-
-function reappearPrompt() {
-  if (toDos.length === 0) {
-    userPrompt.classList.remove('hidden');
-  }
-};
 
 function appendToDoCard(toDo) {
   userPrompt.classList.add('hidden');
-  mainContent.insertAdjacentHTML('afterbegin', `<article class="main__article">
+  mainContent.insertAdjacentHTML('afterbegin', `<article class="main__article card" data-id="${toDo.id}">
         <header class="main__article__header">
           <h3 id="todo-title-output">${toDo.title}</h3>
         </header>
         <section>
-          <span class="main__article__header-span" data-id="${toDo.id}">
+          <span class="main__article__header-span">
             <svg alt="Completed Checkmark Area" class="main__article__section__image-checkbox"></svg>
-            <p>${toDo.tasks}</p>
+            <p>${appendTaskToList(toDo)}</p>
           </span>
         </section>
         <footer>
@@ -100,69 +130,89 @@ function appendToDoCard(toDo) {
       </article>`);
 };
 
-function clearFields() {
-  toDoTitleInput.value = '';
-};
-
-function initializeObject(){
-  event.preventDefault();
-  var toDoInitializer = {
-    title: toDoTitleInput.value,
-    tasks: []
+function reappearPrompt() {
+  if (toDos.length === 0) {
+    userPrompt.classList.remove('hidden');
   }
-  return toDoInitializer 
-}
-
-function addTaskButtonHandler(event) {
-  event.preventDefault();
-
-
-
-
-  
-  var newTask = taskInput.value;
-  createTaskObject(newTask);
-}
-
-function createTaskObject(taskInput) {
-  event.preventDefault();
-  var newTaskArray = []
-  var newTask = {
-    id: Date.now(),
-    taskContent: taskInput,
-    completed: false
-  };
-  appendTaskToList(newTask, newTaskArray)
-  return newTask;
-  console.log(newTask)
-}
-
-function appendTaskToList(task, taskArray) {
-  workingTaskList.insertAdjacentHTML('afterbegin', `<span class="nav__section-task-item">
-            <svg alt="Delete New Task Item" class="nav__section__task-image"></svg>
-            <p class="nav_section_task">${task.taskContent}</p>
-            </span>`);
-  taskArray.push(task);
-  return taskArray
 };
 
-// function getUniqueId(event) {
-//   return event.target.closest('.card').getAttribute('data-id');
-// };
+function clickHandler(event){
+  deleteToDoList(event)
+}
 
-// function getCardIndex(id) {
-//   return ideas.findIndex(function(arrayObj) {
-//   return arrayObj.id == parseInt(id);
-//   })
-// };
+function getToDoUniqueId(event) {
+  return event.target.closest('.card').getAttribute('data-id');
+};
+
+function getToDoIndex(id) {
+  return toDos.findIndex(function(arrayObj) {
+  return arrayObj.id == parseInt(id);
+  })
+};
+
+function deleteToDoList(event) {
+  if (event.target.closest('#main__article__footer__image-delete')) {
+    var toDoId = getToDoUniqueId(event);
+    var toDoIndex = getToDoIndex(toDoId);
+    event.target.closest('.card').remove();
+    toDos[toDoIndex].deleteFromStorage(toDoIndex);
+    reappearPrompt();
+  }
+};
 
 
-// function deleteToDoList(event) {
-//   if (event.target.closest('#white-x-img')) {
-//     var cardId = getUniqueId(event);
-//     var cardIndex = getCardIndex(cardId);
-//     event.target.closest('.card').remove();
-//     ideas[cardIndex].deleteFromStorage(cardIndex);
-//     reappearPrompt();
+
+// function enableMakeTaskListButton() {
+//   makeToDoButton.disabled = false;
+//   disableMakeTaskListButton();
+// }
+
+// function disableMakeTaskListButton() {
+//   if (toDoTitleInput.value === '') {
+//     makeToDoButton.disabled = true;
 //   }
-// };
+// }
+
+
+
+// function initializeObject(){
+//   event.preventDefault();
+//   titleInput = toDoTitleInput.value
+//   var toDoInitializer = {
+//     title: titleInput,
+//     tasks: []
+//   }
+//   var initializedToDo = toDoInitializer
+//   console.log('initializedObject for your eyes', initializedToDo)
+//   taskList = initializedToDo
+//   return taskList
+// }
+
+// function addTaskButtonHandler(event) {
+//   createTaskObject();
+//   taskInput.value = '';
+
+// }
+
+
+
+// function pushTaskIntoTaskList(createdTaskObject){
+//   taskList.push(createdTaskObject)
+// }
+// function updateInitializedObject(newTaskForToDo){
+// taskList.push(newTaskForToDo)
+//   var updatedToDoInitializer() = {
+//     title: toDoToBeInitialized.title, 
+//     tasks: toDoToBeInitialized.value.push(newTaskForToDo)
+//   }
+//   return updatedToDoInitializer
+// }
+
+
+// toDoTitleInput.addEventListener('keyup', enableMakeTaskListButton);
+
+
+
+
+
+
