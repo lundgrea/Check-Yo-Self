@@ -4,11 +4,12 @@
 }
 
 body {
-  height: 100vh;
-  width: 100%;
-  margin: 0;
   display: grid;
+  height: 100vh;
+  margin: 0;
+  width: 100%;
   grid-template-columns: 350px 1fr 1fr;
+  grid-template-rows: 10%;
   grid-template-areas: 
     "header header header"
     "nav main main";
@@ -18,6 +19,8 @@ body {
 
 .header__header {
   display: flex;
+    align-items: center; 
+
   justify-content: space-between;
   background-color: #1F1F3D;
   grid-area: header;
@@ -69,8 +72,8 @@ h1 {
 
 nav {
   background-color: #587A8A;  
-  width: 100%;
-  height: 100vh;
+/*  width: 100%;
+  height: 100vh;*/
   grid-area: nav;
 }
 
@@ -178,17 +181,20 @@ color: #ffffff;
 }
 /*--------------- MAIN ----------------*/
 main {
+  column-gap: 1rem;
+  columns: 2 250px;
   background-color: #F3F6F7;
   grid-area: main;
-  display: flex;
+  height: auto;
+  padding: 2em;
+
+  /*display: flex;
   flex-direction: column;
-  border: 2px solid green;
-  column-count: 2;
-  column-gap: 1rem;
-  height: 100vh;
-  flex: 1 auto;
+  border: 2px solid green;*/
+/*  height: 100vh;
+*/ /* flex: 1 auto;
   width: 50%;
-  margin-bottom: 10px;
+  margin-bottom: 10px;*/
 
 }
 
