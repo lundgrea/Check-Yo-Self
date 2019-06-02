@@ -140,10 +140,7 @@ color: #ffffff;
 }
 
 #nav__section__input-task-title {
-  border-bottom-left-radius: 3px;
-  border-top-left-radius: 3px;
-  border-bottom-right-radius: 0px;
-  border-top-right-radius: 0px;
+  border-radius: 3px;
 }
 
 #nav__section__button-add-task-item {
@@ -157,6 +154,15 @@ color: #ffffff;
   padding: 2%;
   border: none;
   width: 47px;
+}
+
+#nav__section__button-add-task-item:disabled{
+  background-color: lightgrey;
+}
+
+#nav__section__input-task-item{
+border-bottom-right-radius: 0px;
+  border-top-right-radius: 0px;
 }
 
 #nav__section__button-make-task-list {
@@ -240,8 +246,8 @@ h3{
   height: 20px;
   width: 20px;
   margin-top: 6px;
-  background: url(images/checkbox.svg) no-repeat;
-}
+/*  background: url(images/checkbox.svg) no-repeat;
+*/}
 
 p {
   margin-top: 5px;

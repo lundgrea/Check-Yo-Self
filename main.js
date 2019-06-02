@@ -26,18 +26,17 @@ function enableNavButtons(){
 }
 
 function disableNavButtons(){
-  if (toDoTitleInput.value === '' || taskInput.value === '') {
-    makeToDoButton.disabled = false;
-    clearAllButton.disabled = false;
-    addTaskButton.disabled = false;
+  if (toDoTitleInput.value === '' && workingTaskList.innerHTML !== '')
+    makeToDoButton.disabled = true;
+    clearAllButton.disabled = true;
+    addTaskButton.disabled = true;
   }
-}
 
 function clearTaskInput(){
   taskInput.value = '';
 }
 
-function clearButton(){
+function clearButton() {
   event.preventDefault();
   toDoTitleInput.value = '';
   taskInput.value = ''
@@ -58,6 +57,8 @@ function createTaskObject() {
 function clearFields() {
   toDoTitleInput.value = '';
   taskInput.value = '';
+  taskList = [];
+  workingTaskList.innerHTML = '';
 };
 
 function turnObjectIntoToDos(obj) {
@@ -75,7 +76,7 @@ function turnObjectIntoToDos(obj) {
   return newToDo;
 };
 
-function handleMakeTaskListButton(){
+function handleMakeTaskListButton() {
   event.preventDefault();
   var newToDo = new ToDoList({
     id: Date.now(),
@@ -96,8 +97,10 @@ function reappearPrompt() {
   }
 };
 
-function clickHandler(event){
-  deleteToDoList(event)
+function clickHandler(event) {
+  deleteToDoList(event);
+  updateUrgencyButton(event)
+  updateCompletedButton(event)
 }
 
 function getToDoUniqueId(event) {
@@ -110,21 +113,12 @@ function getToDoIndex(id) {
   })
 };
 
-function deleteToDoList(event) {
-  if (event.target.closest('#main__article__footer__image-delete')) {
-    var toDoId = getToDoUniqueId(event);
-    var toDoIndex = getToDoIndex(toDoId);
-    event.target.closest('.card').remove();
-    toDos[toDoIndex].deleteFromStorage(toDoIndex);
-    reappearPrompt();
-  }
-};
 
 function appendTaskToList(task) {
   var taskId = task.id;
   var newListItem = 
   `<span class="nav__section-task-item" data-id="${task.id}">
-            <svg alt="Delete New Task Item" class="nav__section__task-image"></svg>
+            <img src="images/delete-list-item.svg" alt="Delete New Task Item" class="nav__section__task-image">
             <p class="nav_section_task">${task.taskContent}</p>
             </span>`
   workingTaskList.insertAdjacentHTML('afterbegin', newListItem);
@@ -141,6 +135,7 @@ function mapLocalStorage(oldToDos) {
 
 function appendToDoCard(toDo) {
   userPrompt.classList.add('hidden');
+  var urgentStatus = toDo.urgent ? 'urgent-active.svg' : 'urgent.svg'; 
   var newCard = 
   `<article class="main__article card" data-id="${toDo.id}">
         <header class="main__article__header">
@@ -150,7 +145,7 @@ function appendToDoCard(toDo) {
          ${populateTaskList(toDo)}
         </section>
         <footer>
-          <div class="main__article__footer__images main__article__footer__images-urgent">
+           <div class="main__article__footer__images main__article__footer__images-urgent">
             <svg alt="Urgent Button" id="main__article__footer__image-urgent"></svg>
             <h3>URGENT</h3>
           </div>
@@ -167,13 +162,70 @@ function populateTaskList(listedTasks){
   var currentItemList = '';
   for (var i =0; i < listedTasks.tasks.length; i++) {
     currentItemList +=
-      `<span class="main__article__header-span">
-      <svg alt="Completed Checkmark Area" class="main__article__section__image-checkbox"></svg>
+      `<span class="main__article__header-span" data-id="${listedTasks.tasks[i].id}">
+      <img alt="Completed Checkmark Area" class="main__article__section__image-checkbox" src="images/checkbox.svg">
       <p>${listedTasks.tasks[i].taskContent}</p>
       </span>`
   }
  return currentItemList;
 }
+
+
+function deleteToDoList(event) {
+  if (event.target.closest('#main__article__footer__image-delete')) {
+    var toDoId = getToDoUniqueId(event);
+    var toDoIndex = getToDoIndex(toDoId);
+    event.target.closest('.card').remove();
+    toDos[toDoIndex].deleteFromStorage(toDoIndex);
+    reappearPrompt();
+  }
+};
+
+
+
+function updateUrgencyButton(event) {
+  if (event.target.closest('#main__article__footer__image-urgent')) {
+    var toDoId = getToDoUniqueId(event);
+    var toDoIndex = getToDoUniqueId(event);
+    var urgentStatus = 'images/urgent-active.svg';
+    var nonUrgent = document.querySelector(`.card[data-id="${toDoId}"] #main__article__footer__image-urgent`);
+    nonUrgent.src = urgentStatus;
+    toDos[toDoIndex].updateToDo();
+    if (toDos[toDoIndex].urgent === false) {
+      var clearUrgentStatus = 'images/urgent.svg';
+      nonUrgent.src = clearUrgentStatus;
+    } else {
+      nonUrgent.src = urgentStatus;
+    }
+  }
+}
+
+function getTaskUniqueId(event) {
+  return event.target.closest('.main__article__header-span').getAttribute('data-id');
+}
+
+function getTaskIndex(id, obj) {
+  return obj.tasks.findIndex(function(arrayObj) {
+  return arrayObj.id == parseInt(id);
+  })
+};
+
+function updateCompletedButton(event) {
+  if (event.target.closest('.main__article__section__image-checkbox')) {
+    var toDoId = getToDoUniqueId(event);
+    var toDoIndex = getToDoIndex(toDoId);
+    var toDoObject = toDos[toDoIndex]
+    var taskId = getTaskUniqueId(event);
+    var taskIndex = getTaskIndex(taskId, toDoObject);
+    var check = toDoObject.tasks[taskIndex].completed ? 'images/checkbox-active.svg' : 'images/checkbox.svg'
+    event.target.setAttribute('src', check);
+    toDos[toDoIndex].updateTask(toDos, taskIndex);
+    // updateCompleteOnDom(event, toDoObject, taskIndex);
+}
+}
+
+
+
 // function enableMakeTaskListButton() {
 //   makeToDoButton.disabled = false;
 //   disableMakeTaskListButton();
@@ -222,9 +274,4 @@ function populateTaskList(listedTasks){
 
 
 // toDoTitleInput.addEventListener('keyup', enableMakeTaskListButton);
-
-
-
-
-
 

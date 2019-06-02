@@ -17,11 +17,15 @@ class ToDoList {
   }
 
   updateToDo() {
-
+    this.urgent = !this.urgent;
+    this.saveToStorage(toDos);
+    return this.urgent;
   }
 
-  updateTask() {
-    
+  updateTask(toDos, index) {
+    this.tasks[index].completed = !this.tasks[index].completed;
+    this.saveToStorage(toDos);
+
   }
 }
 
