@@ -17,12 +17,6 @@ clearAllButton.addEventListener('click', clearButton);
 main.addEventListener('click', clickHandler)
 window.addEventListener('load', mapLocalStorage(toDos))
 
-function mapLocalStorage(oldToDos) {
-  var newToDos = oldToDos.map(function(object) {
-     return turnObjectIntoToDos(object);
-  });
-  toDos = newToDos;
-};
 
 function enableNavButtons(){
   makeToDoButton.disabled = false;
@@ -61,18 +55,6 @@ function createTaskObject() {
   return newTask
 }
 
-function appendTaskToList(task) {
-  var taskId = task.id;
-  var newListItem = 
-  `<span class="nav__section-task-item" data-id="${task.id}">
-            <svg alt="Delete New Task Item" class="nav__section__task-image"></svg>
-            <p class="nav_section_task">${task.taskContent}</p>
-            </span>`
-  workingTaskList.insertAdjacentHTML('afterbegin', newListItem);
-  clearTaskInput();
-  disableNavButtons();
-};
-
 function clearFields() {
   toDoTitleInput.value = '';
   taskInput.value = '';
@@ -82,13 +64,11 @@ function turnObjectIntoToDos(obj) {
   var toDoUniqueId = obj.id;
   var toDoTitle = obj.title;
   var toDoUrgency = obj.urgent;
-  var toDoCompleted = obj.completed;
   var toDoTasks = obj.tasks;
   var newToDo = new ToDoList({
     id: toDoUniqueId,
     title: toDoTitle,
     urgent: toDoUrgency,
-    completed: toDoCompleted,
     tasks: toDoTasks
   })
   appendToDoCard(newToDo);
@@ -101,7 +81,6 @@ function handleMakeTaskListButton(){
     id: Date.now(),
     title: toDoTitleInput.value,
     urgent: false,
-    completed: false,
     tasks: taskList
   });
   turnObjectIntoToDos(newToDo);
@@ -110,62 +89,6 @@ function handleMakeTaskListButton(){
   clearFields();
   disableNavButtons()
 }
-
-function populateTaskList(listedTasks){
-  var currentItemList = '';
-  for (var i =0; i < listedTasks.length; i++) {
-    currentItemList +=
-    `
-    // `
-
-    // <li class="list-item">
-    // <input type="checkbox" class="done-icon" data-id=${tasks.items[i].id} id=index${i}>
-    // <label for="id=index${i}" class="card-todo-item">${tasks.items[i].content}</label>
-    // </li>`
-
-
-
-    // <ul class="nav-list">
-    //   <li class="nav-list-item-holder"><input type="image" data-id="${info.id}" class="task-item-delete" src="images/delete.svg" height="15px">
-    //   ${info.content}</li>
-    //   </ul>
-
-
-
-
-
-
-
-  }
- return currentItemList;
-}
-
-function appendToDoCard(toDo) {
-  userPrompt.classList.add('hidden');
-  var newCard = 
-  `<article class="main__article card" data-id="${toDo.id}">
-        <header class="main__article__header">
-          <h2 id="todo-title-output">${toDo.title}</h2>
-        </header>
-        <section>
-          <span class="main__article__header-span">
-            <svg alt="Completed Checkmark Area" class="main__article__section__image-checkbox"></svg>
-            <p>${populateTaskList(toDo)}</p>
-          </span>
-        </section>
-        <footer>
-          <div class="main__article__footer__images main__article__footer__images-urgent">
-            <svg alt="Urgent Button" id="main__article__footer__image-urgent"></svg>
-            <h3>URGENT</h3>
-          </div>
-          <div class="main__article__footer__images main__article__footer__images-delete">
-            <svg alt="Delete Button" id="main__article__footer__image-delete"></svg>
-            <h3>DELETE</h3>
-          </div>
-        </footer>
-      </article>`
-  mainContent.insertAdjacentHTML('afterbegin', newCard);
-};
 
 function reappearPrompt() {
   if (toDos.length === 0) {
@@ -197,8 +120,60 @@ function deleteToDoList(event) {
   }
 };
 
+function appendTaskToList(task) {
+  var taskId = task.id;
+  var newListItem = 
+  `<span class="nav__section-task-item" data-id="${task.id}">
+            <svg alt="Delete New Task Item" class="nav__section__task-image"></svg>
+            <p class="nav_section_task">${task.taskContent}</p>
+            </span>`
+  workingTaskList.insertAdjacentHTML('afterbegin', newListItem);
+  clearTaskInput();
+  disableNavButtons();
+};
 
+function mapLocalStorage(oldToDos) {
+  var newToDos = oldToDos.map(function(object) {
+     return turnObjectIntoToDos(object);
+  });
+  toDos = newToDos;
+};
 
+function appendToDoCard(toDo) {
+  userPrompt.classList.add('hidden');
+  var newCard = 
+  `<article class="main__article card" data-id="${toDo.id}">
+        <header class="main__article__header">
+          <h2 id="todo-title-output">${toDo.title}</h2>
+        </header>
+        <section>
+         ${populateTaskList(toDo)}
+        </section>
+        <footer>
+          <div class="main__article__footer__images main__article__footer__images-urgent">
+            <svg alt="Urgent Button" id="main__article__footer__image-urgent"></svg>
+            <h3>URGENT</h3>
+          </div>
+          <div class="main__article__footer__images main__article__footer__images-delete">
+            <svg alt="Delete Button" id="main__article__footer__image-delete"></svg>
+            <h3>DELETE</h3>
+          </div>
+        </footer>
+      </article>`
+  mainContent.insertAdjacentHTML('afterbegin', newCard);
+};
+
+function populateTaskList(listedTasks){
+  var currentItemList = '';
+  for (var i =0; i < listedTasks.tasks.length; i++) {
+    currentItemList +=
+      `<span class="main__article__header-span">
+      <svg alt="Completed Checkmark Area" class="main__article__section__image-checkbox"></svg>
+      <p>${listedTasks.tasks[i].taskContent}</p>
+      </span>`
+  }
+ return currentItemList;
+}
 // function enableMakeTaskListButton() {
 //   makeToDoButton.disabled = false;
 //   disableMakeTaskListButton();

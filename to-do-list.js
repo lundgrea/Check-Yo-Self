@@ -3,7 +3,6 @@ class ToDoList {
     this.id = obj.id
     this.title = obj.title
     this.urgent = obj.urgent || false;
-    this.completed = obj.completed || false;
     this.tasks = obj.tasks || []
   }
 
