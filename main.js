@@ -118,7 +118,7 @@ function appendTaskToList(task) {
   var taskId = task.id;
   var newListItem = 
   `<span class="nav__section-task-item" data-id="${task.id}">
-            <img src="images/delete.svg" alt="Delete New Task Item" class="nav__section__task-image">
+            <img src="images/delete-list-item.svg" alt="Delete New Task Item" class="nav__section__task-image">
             <p class="nav_section_task">${task.taskContent}</p>
             </span>`
   workingTaskList.insertAdjacentHTML('afterbegin', newListItem);

@@ -295,7 +295,7 @@ footer {
 #main__article__footer__image-delete {
   height: 30px;
   width: 30px;
-  /*background: url(images/delete.svg) no-repeat;*/
+  background: url(images/delete.svg) no-repeat;
   margin-left: 6px;
 }
 
