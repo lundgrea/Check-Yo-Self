@@ -75,7 +75,7 @@ function turnObjectIntoToDos(obj) {
   return newToDo;
 };
 
-function handleMakeTaskListButton(){
+function handleMakeTaskListButton() {
   event.preventDefault();
   var newToDo = new ToDoList({
     id: Date.now(),
@@ -96,8 +96,9 @@ function reappearPrompt() {
   }
 };
 
-function clickHandler(event){
-  deleteToDoList(event)
+function clickHandler(event) {
+  deleteToDoList(event);
+  updateUrgencyButton(event)
 }
 
 function getToDoUniqueId(event) {
@@ -110,15 +111,6 @@ function getToDoIndex(id) {
   })
 };
 
-function deleteToDoList(event) {
-  if (event.target.closest('#main__article__footer__image-delete')) {
-    var toDoId = getToDoUniqueId(event);
-    var toDoIndex = getToDoIndex(toDoId);
-    event.target.closest('.card').remove();
-    toDos[toDoIndex].deleteFromStorage(toDoIndex);
-    reappearPrompt();
-  }
-};
 
 function appendTaskToList(task) {
   var taskId = task.id;
@@ -141,6 +133,7 @@ function mapLocalStorage(oldToDos) {
 
 function appendToDoCard(toDo) {
   userPrompt.classList.add('hidden');
+  var urgentStatus = toDo.urgent ? 'urgent-active.svg' : 'urgent.svg'; 
   var newCard = 
   `<article class="main__article card" data-id="${toDo.id}">
         <header class="main__article__header">
@@ -150,7 +143,7 @@ function appendToDoCard(toDo) {
          ${populateTaskList(toDo)}
         </section>
         <footer>
-          <div class="main__article__footer__images main__article__footer__images-urgent">
+           <div class="main__article__footer__images main__article__footer__images-urgent">
             <svg alt="Urgent Button" id="main__article__footer__image-urgent"></svg>
             <h3>URGENT</h3>
           </div>
@@ -174,6 +167,61 @@ function populateTaskList(listedTasks){
   }
  return currentItemList;
 }
+
+
+function deleteToDoList(event) {
+  if (event.target.closest('#main__article__footer__image-delete')) {
+    var toDoId = getToDoUniqueId(event);
+    var toDoIndex = getToDoIndex(toDoId);
+    event.target.closest('.card').remove();
+    toDos[toDoIndex].deleteFromStorage(toDoIndex);
+    reappearPrompt();
+  }
+};
+
+
+
+function updateUrgencyButton(event) {
+  if (event.target.closest('#main__article__footer__image-urgent')) {
+    var toDoId = getToDoUniqueId(event);
+    var toDoIndex = getToDoIndex(toDoId);
+    var urgentStatus = 'images/urgent-active.svg';
+    var nonUrgent = document.querySelector(`.card[data-id="${toDoId}"] #main__article__footer__image-urgent`);
+    nonUrgent.src = urgentStatus;
+    toDos[toDoIndex].updateToDo();
+    if (toDos[toDoIndex].urgent === false) {
+      var clearUrgentStatus = 'images/urgent.svg';
+      nonUrgent.src = clearUrgentStatus;
+    } else {
+      nonUrgent.src = urgentStatus;
+    }
+  }
+}
+
+
+ function updateStarBtn(event) {
+  if (event.target.closest('#white-star-img')) {  
+    var cardId = getUniqueId(event);
+    var cardIndex = getCardIndex(cardId);
+    var yellowStar = 'images/star-active.svg'; 
+    var oldStar = document.querySelector(`.card[data-id="${cardId}"] #white-star-img`);
+    oldStar.src = yellowStar;
+    ideas[cardIndex].updateStar();
+  if (ideas[cardIndex].star === false) {
+    var whiteStar = 'images/star.svg';
+    oldStar.src = whiteStar;
+  } else {
+    oldStar.src = yellowStar;
+    }
+  }
+};
+
+
+
+
+
+
+
 // function enableMakeTaskListButton() {
 //   makeToDoButton.disabled = false;
 //   disableMakeTaskListButton();
