@@ -161,9 +161,10 @@ function appendToDoCard(toDo) {
 function populateTaskList(listedTasks){
   var currentItemList = '';
   for (var i =0; i < listedTasks.tasks.length; i++) {
+  var completedStatus = listedTasks.tasks[i].completed ? 'checkbox-active.svg' : 'checkbox.svg';
     currentItemList +=
       `<span class="main__article__header-span" data-id="${listedTasks.tasks[i].id}">
-      <img alt="Completed Checkmark Area" class="main__article__section__image-checkbox" src="images/checkbox.svg">
+      <img alt="Completed Checkmark Area" class="main__article__section__image-checkbox" src="images/${completedStatus}">
       <p>${listedTasks.tasks[i].taskContent}</p>
       </span>`
   }
@@ -217,11 +218,18 @@ function updateCompletedButton(event) {
     var toDoObject = toDos[toDoIndex]
     var taskId = getTaskUniqueId(event);
     var taskIndex = getTaskIndex(taskId, toDoObject);
+    toDos[toDoIndex].updateTask(toDos, taskIndex);
     var check = toDoObject.tasks[taskIndex].completed ? 'images/checkbox-active.svg' : 'images/checkbox.svg'
     event.target.setAttribute('src', check);
-    toDos[toDoIndex].updateTask(toDos, taskIndex);
-    // updateCompleteOnDom(event, toDoObject, taskIndex);
-}
+    var toItalics = toDoObject.tasks[taskIndex].taskContent
+    console.log(toItalics)
+    // toDoObject.tasks[taskIndex].taskContent.italics()
+    // toDoObject.tasks[taskIndex].taskContent.style.fontstyle = "italics"
+    // toDoObject.tasks[taskIndex].p.style.fontstyle = "italics"
+
+    // toDoObject.tasks[taskIndex].p.classList.add('italics');
+
+  }
 }
 
 
