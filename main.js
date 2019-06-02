@@ -58,6 +58,8 @@ function createTaskObject() {
 function clearFields() {
   toDoTitleInput.value = '';
   taskInput.value = '';
+  taskList = [];
+  workingTaskList.innerHTML = '';
 };
 
 function turnObjectIntoToDos(obj) {
