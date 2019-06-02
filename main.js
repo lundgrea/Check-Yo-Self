@@ -118,7 +118,7 @@ function appendTaskToList(task) {
   var taskId = task.id;
   var newListItem = 
   `<span class="nav__section-task-item" data-id="${task.id}">
-            <svg alt="Delete New Task Item" class="nav__section__task-image"></svg>
+            <img src="images/delete.svg" alt="Delete New Task Item" class="nav__section__task-image">
             <p class="nav_section_task">${task.taskContent}</p>
             </span>`
   workingTaskList.insertAdjacentHTML('afterbegin', newListItem);
@@ -163,7 +163,7 @@ function populateTaskList(listedTasks){
   for (var i =0; i < listedTasks.tasks.length; i++) {
     currentItemList +=
       `<span class="main__article__header-span" data-id="${listedTasks.tasks[i].id}">
-      <svg alt="Completed Checkmark Area" class="main__article__section__image-checkbox"></svg>
+      <img alt="Completed Checkmark Area" class="main__article__section__image-checkbox" src="images/checkbox.svg">
       <p>${listedTasks.tasks[i].taskContent}</p>
       </span>`
   }
@@ -204,11 +204,9 @@ function getTaskUniqueId(event) {
   return event.target.closest('.main__article__header-span').getAttribute('data-id');
 }
 
-function getTaskIndex(uniqueTaskId) {
-
-
-  return toDos.tasks.findIndex(function(arrayObj) {
-  return arrayObj.tasks.id == parseInt(id);
+function getTaskIndex(id, obj) {
+  return obj.tasks.findIndex(function(arrayObj) {
+  return arrayObj.id == parseInt(id);
   })
 };
 
@@ -216,26 +214,14 @@ function updateCompletedButton(event) {
   if (event.target.closest('.main__article__section__image-checkbox')) {
     var toDoId = getToDoUniqueId(event);
     var toDoIndex = getToDoIndex(toDoId);
+    var toDoObject = toDos[toDoIndex]
     var taskId = getTaskUniqueId(event);
-    var taskIndex = getTaskIndex(taskId);
-
-
-    console.log('show me the money ', taskIndex)
-
-
-    
-
-    var completedStatus = 'images/checkbox-active.svg';
-    var incompleteStatus = document.querySelector(`#main__article__header-span[data-id="${taskId}"] #main__article__section__image-checkbox`);
-    incompleteStatus.src = completedStatus;
-    toDos[toDoIndex].tasks[taskIndex].updateTask(taskIndex);
-    if (toDos[toDoIndex].tasks[taskIndex].completed === false) {
-      var nonCompleted = 'images/checkbox.svg';
-      incompleteStatus.src = nonCompleted;
-    } else {
-      incompleteStatus.src = completedStatus
-    }
-  }
+    var taskIndex = getTaskIndex(taskId, toDoObject);
+    var check = toDoObject.tasks[taskIndex].completed ? 'images/checkbox-active.svg' : 'images/checkbox.svg'
+    event.target.setAttribute('src', check);
+    toDos[toDoIndex].updateTask(toDos, taskIndex);
+    // updateCompleteOnDom(event, toDoObject, taskIndex);
+}
 }
 
 
@@ -288,9 +274,4 @@ function updateCompletedButton(event) {
 
 
 // toDoTitleInput.addEventListener('keyup', enableMakeTaskListButton);
-
-
-
-
-
 

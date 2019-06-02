@@ -22,8 +22,10 @@ class ToDoList {
     return this.urgent;
   }
 
-  updateTask(index) {
+  updateTask(toDos, index) {
     this.tasks[index].completed = !this.tasks[index].completed;
+    this.saveToStorage(toDos);
+
   }
 }
 
