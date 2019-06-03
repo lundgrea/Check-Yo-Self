@@ -303,17 +303,15 @@ footer {
 }
 
 .main__article__task-completed {
-  color: ;
+  color: #58798B;
   font-style: italic;
-  margin: 0px;
+    margin-left: 15px;
+    margin-right: 15px;
 }
 
+
 .main__article__task-not-completed{
- margin: 0px;
-   margin-top: 5px;
-  margin-left: 10px; 
-  font-size: 1.25em;
-    color: #1F1F3D;
+  
 
 }
 

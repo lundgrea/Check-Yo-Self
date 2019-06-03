@@ -39,11 +39,11 @@ function ifTaskArrayEmpty() {
 function ifTitleFull() {
   if (toDoTitleInput.value === ''  || taskInput.value === '') {
     makeToDoButton.disabled = true;
-    clearAllButton.disabled = true;
+    clearAllButton.disabled = false;
     addTaskButton.disabled = true;
   } else if (toDoTitleInput.value !== '' && taskInput.value !== '') {
     makeToDoButton.disabled = true;
-    clearAllButton.disabled = true;
+    clearAllButton.disabled = false;
     addTaskButton.disabled = false;
     ifTaskArrayEmpty()
   }
