@@ -161,6 +161,8 @@ color: #ffffff;
   background-color: lightgrey;
 }
 
+
+
 #nav__section__input-task-item{
 border-bottom-right-radius: 0px;
   border-top-right-radius: 0px;
@@ -170,6 +172,9 @@ border-bottom-right-radius: 0px;
   margin-bottom: 5px;
 }
 
+#nav__section__button-make-task-list:disabled {
+  background-color: lightgrey;
+}
 .nav__section__buttons:disabled {
   background-color: lightgrey;
 }
@@ -180,6 +185,10 @@ border-bottom-right-radius: 0px;
 
 #nav__section__button-filter-by-urgency {
   margin-top: 35px;
+}
+
+#nav__section__button-filter-by-urgency:disabled {
+  background-color: lightgrey;
 }
 
 .nav__section_button-bottom {
@@ -199,9 +208,6 @@ main {
 #main__p-prompt{
 }
 
-.italics{
-  font-style: italic;
-}
 
 .hidden{
   display: none;
@@ -213,6 +219,7 @@ main {
   break-inside: avoid;
   padding: 3px;
   width: 100%;
+  margin: 10px;
   /* box-sizing: content-box; 
    object-fit: fill;*/
     min-height: 120px;
@@ -305,6 +312,10 @@ footer {
 
 #main__article__footer__image-delete:hover {
   background: url(images/delete-active.svg) no-repeat;
+}
+
+.italics {
+  font-style: italic;
 }
 
 /*----------- MEDIA QUERIES ------------*/
