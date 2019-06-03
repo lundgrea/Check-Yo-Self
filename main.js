@@ -258,9 +258,7 @@ function getTaskIndex(id, obj) {
   })
 };
 
-
 function updateCompletedButton(event) {
-  console.log(event.target)
   if (event.target.closest('.main__article__section__image-checkbox')) {
     var toDoId = getToDoUniqueId(event);
     var toDoIndex = getToDoIndex(toDoId);
@@ -273,8 +271,6 @@ function updateCompletedButton(event) {
     updateCompletedStyle(event);
   }
 }
-
-
 
 function updateCompletedStyle (event, toDoIndex, taskIndex){
   var completedItem = event.target.nextElementSibling;
