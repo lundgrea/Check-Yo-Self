@@ -212,21 +212,24 @@ function populateTaskList(listedTasks){
       <p class="${completedParagraphStyle}">${listedTasks.tasks[i].taskContent}</p>
       </span>`
   }
- return currentItemList;
-}
+ return currentItemList;}
 
 
 function deleteToDoList(event) {
   if (event.target.closest('#main__article__footer__image-delete')) {
     var toDoId = getToDoUniqueId(event);
     var toDoIndex = getToDoIndex(toDoId);
-    event.target.closest('.card').remove();
-    toDos[toDoIndex].deleteFromStorage(toDoIndex);
-    reappearPrompt();
-  }
+    var cardToEnsureComplete = toDos[toDoIndex].tasks 
+    var filteredTasks = cardToEnsureComplete.filter(task => task.completed === true) 
+    if (filteredTasks.length === cardToEnsureComplete.length) {
+      event.target.closest('.card').remove();
+      toDos[toDoIndex].deleteFromStorage(toDoIndex);
+      reappearPrompt();
+  } else { 
+    alert('Please complete all tasks prior to deleting to do.')
 };
-
-
+}
+}
 
 function updateUrgencyButton(event) {
   if (event.target.closest('#main__article__footer__image-urgent')) {
