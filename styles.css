@@ -121,7 +121,7 @@ color: #ffffff;
   margin-bottom: 15px;
 }
 
-.nav__section__buttons {
+.nav__section__buttons-large{
   width: 300px;
   background-color: #1F1F3D;
   color: #FFFFFF;
@@ -132,6 +132,10 @@ color: #ffffff;
   margin-left: 12px;
   border: none;
   border-radius: 3px;
+
+}
+.nav__section__buttons:disabled {
+   background-color: lightgrey;
 }
 
 .nav__section-div {
@@ -145,7 +149,6 @@ color: #ffffff;
 }
 
 #nav__section__button-add-task-item {
-  background-color: #1F1F3D;
   height: 40px;  
   padding: 1%;
   border-bottom-right-radius: 0px;
@@ -155,10 +158,11 @@ color: #ffffff;
   padding: 2%;
   border: none;
   width: 47px;
+  background: #1F1F3D url(images/plus.svg) no-repeat;
 }
 
-#nav__section__button-add-task-item:disabled{
-  background-color: lightgrey;
+#nav__section__button-add-task-item:disabled {
+ background: lightgrey url(images/plus.svg) no-repeat
 }
 
 #nav__section__input-task-item{
@@ -170,16 +174,9 @@ border-bottom-right-radius: 0px;
   margin-bottom: 5px;
 }
 
-.nav__section__buttons:disabled {
-  background-color: lightgrey;
-}
-
-#nav__section__button-clear-all {
+#nav__section__button-clear-all, 
+#nav__section__button-filter-by-urgency  {
   margin-bottom: 35px;
-}
-
-#nav__section__button-filter-by-urgency {
-  margin-top: 35px;
 }
 
 .nav__section_button-bottom {
@@ -199,9 +196,6 @@ main {
 #main__p-prompt{
 }
 
-.italics{
-  font-style: italic;
-}
 
 .hidden{
   display: none;
@@ -213,6 +207,7 @@ main {
   break-inside: avoid;
   padding: 3px;
   width: 100%;
+  margin: 10px;
   /* box-sizing: content-box; 
    object-fit: fill;*/
     min-height: 120px;
@@ -305,6 +300,10 @@ footer {
 
 #main__article__footer__image-delete:hover {
   background: url(images/delete-active.svg) no-repeat;
+}
+
+.italics {
+  font-style: italic;
 }
 
 /*----------- MEDIA QUERIES ------------*/

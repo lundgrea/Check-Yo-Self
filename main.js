@@ -8,31 +8,137 @@ var addTaskButton = document.getElementById('nav__section__button-add-task-item'
 var workingTaskList = document.getElementById('nav__section-task-list')
 var userPrompt = document.getElementById('main__p-prompt');
 var mainContent = document.getElementById('main');
+var navSection = document.getElementById('nav')
 
 toDoTitleInput.addEventListener('keyup', enableNavButtons);
 taskInput.addEventListener('keyup', enableNavButtons);
 addTaskButton.addEventListener('click', createTaskObject);
 makeToDoButton.addEventListener('click', handleMakeTaskListButton);
 clearAllButton.addEventListener('click', clearButton);
-main.addEventListener('click', clickHandler)
+main.addEventListener('click', clickHandler);
+navSection.addEventListener('click', removeTaskFromWorkingList);
 window.addEventListener('load', mapLocalStorage(toDos))
 
+// function enableNavButtons() {
+//   makeToDoButton.disabled = false;
+//   clearAllButton.disabled = false;
+//   addTaskButton.disabled = false
+//   disableNavButtons();
+// }
 
-function enableNavButtons(){
+// function disableNavButtons() {
+//   if (toDoTitleInput.value === '' || taskInput.value === '') {
+//     makeToDoButton.disabled = true;
+//     clearAllButton.disabled = true;
+//     addTaskButton.disabled = true;
+//     // toggleMakeToDoButton()
+//   }
+// }
+
+// function toggleMakeToDoButton(){
+//   if (taskList.length === 0) {
+//     makeToDoButton.disabled = false;
+//   }
+// }
+
+
+function enableNavButtons() {
   makeToDoButton.disabled = false;
   clearAllButton.disabled = false;
-  addTaskButton.disabled = false;
-  disableNavButtons();
+  addTaskButton.disabled = false
+  disableNavButtons()
 }
 
-function disableNavButtons(){
-  if (toDoTitleInput.value === '' && workingTaskList.innerHTML !== '')
+function disableNavButtons() {
+  ifTitleFull();
+  ifTaskArrayEmpty()
+}
+
+function ifTaskArrayEmpty() {
+  if (taskList.length > 0)
+    makeToDoButton.disabled = false;
+}
+
+function ifTitleFull() {
+  if (toDoTitleInput.value === ''  || taskInput.value === '') {
     makeToDoButton.disabled = true;
     clearAllButton.disabled = true;
     addTaskButton.disabled = true;
+  } else if (toDoTitleInput.value !== '' && taskInput.value !== '') {
+    makeToDoButton.disabled = true;
+    clearAllButton.disabled = true;
+    addTaskButton.disabled = false;
+    ifTaskArrayEmpty()
   }
+}
 
-function clearTaskInput(){
+ // } else if (taskList.length > 0)
+ //    makeToDoButton.disabled = false;
+  // } else if (toDoTitleInput.value !== '' && taskList.length === 0) {
+  //   makeToDoButton.disabled = false
+  // }
+
+// function ifFieldsClear() {
+//   if (taskInput.value !== '') { 
+//     addTaskButton.disabled = false;
+//     makeToDoButton.disabled = true;
+//     clearAllButton.disabled = true;
+//   }
+// }
+
+// function ifTaskListExists(){
+//   if (taskList.length = 0 && toDoInput.value !== '') {
+//   makeToDoButton.disabled = true;
+//   } 
+// }
+
+
+//   } else if ()
+//   if (toDoTitleInput.value === '' || taskInput.value === '') {
+//     makeToDoButton.disabled = false;
+//     clearAllButton.disabled = true;
+//     addTaskButton.disabled = true;
+//   } else if (toDoTitleInput.value === '' || taskList.length === 0) {
+//     makeToDoButton.disabled = false;
+//   }
+// }
+
+
+
+// function tryThisEnabler(){
+//   if (toDoTitleInput.value === '' || taskInput.value === '') {
+//     makeToDoButton.disabled = true;
+//     clearAllButton.disabled = true;
+//     addTaskButton.disabled = true;
+// } else if (toDoTitleInput.value ==='' || taskList.length === 0) {
+//     makeToDoButton.disabled = true
+// } else if {
+
+// }
+
+
+function removeTaskFromWorkingList(event) {
+  if (event.target.closest('.nav__section__task-image')) {
+    var taskId = getSpecificTaskId(event);
+    var taskIndex = getSpecificIndexId(taskId)
+    event.target.closest('.nav__section-task-item').remove();
+    taskList.splice(taskIndex, 1)
+    disableNavButtons();
+  }
+}
+
+function getSpecificTaskId(event) {
+  return event.target.closest('.nav__section-task-item').getAttribute('data-id')
+}
+
+function getSpecificIndexId(id) {
+  return taskList.findIndex(function(arrayObj) {
+  return arrayObj.id == parseInt(id)
+  })
+};
+
+
+function clearTaskInput() {
   taskInput.value = '';
 }
 
@@ -40,6 +146,10 @@ function clearButton() {
   event.preventDefault();
   toDoTitleInput.value = '';
   taskInput.value = ''
+  workingTaskList.innerHTML = ''
+  makeToDoButton.disabled = true;
+  clearAllButton.disabled = true;
+  addTaskButton.disabled = true;
 }
 
 function createTaskObject() {
@@ -52,6 +162,7 @@ function createTaskObject() {
   appendTaskToList(newTask);
   taskList.push(newTask)
   return newTask
+  ifTaskArrayEmpty()
 }
 
 function clearFields() {
@@ -211,7 +322,9 @@ function getTaskIndex(id, obj) {
   })
 };
 
+
 function updateCompletedButton(event) {
+  console.log(event.target)
   if (event.target.closest('.main__article__section__image-checkbox')) {
     var toDoId = getToDoUniqueId(event);
     var toDoIndex = getToDoIndex(toDoId);
@@ -221,16 +334,19 @@ function updateCompletedButton(event) {
     toDos[toDoIndex].updateTask(toDos, taskIndex);
     var check = toDoObject.tasks[taskIndex].completed ? 'images/checkbox-active.svg' : 'images/checkbox.svg'
     event.target.setAttribute('src', check);
-    var toItalics = toDoObject.tasks[taskIndex].taskContent
-    console.log(toItalics)
-    // toDoObject.tasks[taskIndex].taskContent.italics()
-    // toDoObject.tasks[taskIndex].taskContent.style.fontstyle = "italics"
-    // toDoObject.tasks[taskIndex].p.style.fontstyle = "italics"
-
-    // toDoObject.tasks[taskIndex].p.classList.add('italics');
-
+    updateCompletedStyle(event, toDoIndex, taskIndex);
+    // var toItalics = toDoObject.tasks[taskIndex].taskContent
+    // event.target.closest(p).classList.add('italics');
   }
 }
+
+
+
+function updateCompletedStyle (event, toDoIndex, taskIndex){
+
+}
+
+
 
 
 
