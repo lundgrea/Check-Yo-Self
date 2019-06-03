@@ -193,7 +193,17 @@ main {
   padding: 2em;
 }
 
-#main__p-prompt{
+#main__p-prompt {
+  border: 2px dotted lightgrey;
+  margin: auto;
+  text-align: center;
+  width: 100%;
+  background: #FAFDFF;
+  break-inside: avoid;
+  margin-bottom: 10px;
+    min-height: 120px;
+        padding: 25px;
+
 }
 
 
@@ -208,8 +218,6 @@ main {
   padding: 3px;
   width: 100%;
   margin-bottom: 10px;
-  /* box-sizing: content-box; 
-   object-fit: fill;*/
     min-height: 120px;
 }
 
@@ -309,11 +317,6 @@ footer {
     margin-right: 15px;
 }
 
-
-.main__article__task-not-completed{
-  
-
-}
 
 /*----------- MEDIA QUERIES ------------*/
 
