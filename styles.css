@@ -207,7 +207,7 @@ main {
   break-inside: avoid;
   padding: 3px;
   width: 100%;
-  margin: 10px;
+  margin-bottom: 10px;
   /* box-sizing: content-box; 
    object-fit: fill;*/
     min-height: 120px;
@@ -264,7 +264,7 @@ footer {
   display: flex;
   border-top: 2px solid #C8D3D9;
   justify-content: space-between;
-  margin-top: 0px;
+  margin-top: 10px;
 }
 
 .main__article__footer__images {
@@ -302,8 +302,19 @@ footer {
   background: url(images/delete-active.svg) no-repeat;
 }
 
-.italics {
+.main__article__task-completed {
+  color: ;
   font-style: italic;
+  margin: 0px;
+}
+
+.main__article__task-not-completed{
+ margin: 0px;
+   margin-top: 5px;
+  margin-left: 10px; 
+  font-size: 1.25em;
+    color: #1F1F3D;
+
 }
 
 /*----------- MEDIA QUERIES ------------*/
