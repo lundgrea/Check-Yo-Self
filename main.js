@@ -19,17 +19,23 @@ main.addEventListener('click', clickHandler);
 navSection.addEventListener('click', removeTaskFromWorkingList);
 window.addEventListener('load', mapLocalStorage(toDos))
 
-
 function enableNavButtons() {
-  makeToDoButton.disabled = false;
+  enableMakeToDoButton()
   clearAllButton.disabled = false;
-  addTaskButton.disabled = false;
+  addTaskButton.disabled = false
   disableNavButtons();
 }
 
+
+function enableMakeToDoButton(){
+  if (taskList.length === 0)
+    makeToDoButton.disabled = false;
+}
+
+
 function disableNavButtons() {
-  if (toDoTitleInput.value === '' || taskList.length === 0) {
-    makeToDoButton.disabled = true;
+  if (toDoTitleInput.value === '' || taskInput.value === '') {
+    enableMakeToDoButton();
     clearAllButton.disabled = true;
     addTaskButton.disabled = true;
   }
@@ -249,6 +255,7 @@ function updateCompletedButton(event) {
     toDos[toDoIndex].updateTask(toDos, taskIndex);
     var check = toDoObject.tasks[taskIndex].completed ? 'images/checkbox-active.svg' : 'images/checkbox.svg'
     event.target.setAttribute('src', check);
+    updateCompletedStyle(event, toDoIndex, taskIndex);
     // var toItalics = toDoObject.tasks[taskIndex].taskContent
     // event.target.closest(p).classList.add('italics');
   }
@@ -256,6 +263,9 @@ function updateCompletedButton(event) {
 
 
 
+function updateCompletedStyle (event, toDoIndex, taskIndex){
+
+}
 
 
 
