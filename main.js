@@ -17,30 +17,7 @@ makeToDoButton.addEventListener('click', handleMakeTaskListButton);
 clearAllButton.addEventListener('click', clearButton);
 main.addEventListener('click', clickHandler);
 navSection.addEventListener('click', removeTaskFromWorkingList);
-window.addEventListener('load', mapLocalStorage(toDos))
-
-// function enableNavButtons() {
-//   makeToDoButton.disabled = false;
-//   clearAllButton.disabled = false;
-//   addTaskButton.disabled = false
-//   disableNavButtons();
-// }
-
-// function disableNavButtons() {
-//   if (toDoTitleInput.value === '' || taskInput.value === '') {
-//     makeToDoButton.disabled = true;
-//     clearAllButton.disabled = true;
-//     addTaskButton.disabled = true;
-//     // toggleMakeToDoButton()
-//   }
-// }
-
-// function toggleMakeToDoButton(){
-//   if (taskList.length === 0) {
-//     makeToDoButton.disabled = false;
-//   }
-// }
-
+window.addEventListener('load', mapLocalStorage(toDos));
 
 function enableNavButtons() {
   makeToDoButton.disabled = false;
@@ -71,51 +48,6 @@ function ifTitleFull() {
     ifTaskArrayEmpty()
   }
 }
-
- // } else if (taskList.length > 0)
- //    makeToDoButton.disabled = false;
-  // } else if (toDoTitleInput.value !== '' && taskList.length === 0) {
-  //   makeToDoButton.disabled = false
-  // }
-
-// function ifFieldsClear() {
-//   if (taskInput.value !== '') { 
-//     addTaskButton.disabled = false;
-//     makeToDoButton.disabled = true;
-//     clearAllButton.disabled = true;
-//   }
-// }
-
-// function ifTaskListExists(){
-//   if (taskList.length = 0 && toDoInput.value !== '') {
-//   makeToDoButton.disabled = true;
-//   } 
-// }
-
-
-//   } else if ()
-//   if (toDoTitleInput.value === '' || taskInput.value === '') {
-//     makeToDoButton.disabled = false;
-//     clearAllButton.disabled = true;
-//     addTaskButton.disabled = true;
-//   } else if (toDoTitleInput.value === '' || taskList.length === 0) {
-//     makeToDoButton.disabled = false;
-//   }
-// }
-
-
-
-// function tryThisEnabler(){
-//   if (toDoTitleInput.value === '' || taskInput.value === '') {
-//     makeToDoButton.disabled = true;
-//     clearAllButton.disabled = true;
-//     addTaskButton.disabled = true;
-// } else if (toDoTitleInput.value ==='' || taskList.length === 0) {
-//     makeToDoButton.disabled = true
-// } else if {
-
-// }
-
 
 function removeTaskFromWorkingList(event) {
   if (event.target.closest('.nav__section__task-image')) {
@@ -232,7 +164,7 @@ function appendTaskToList(task) {
             <img src="images/delete-list-item.svg" alt="Delete New Task Item" class="nav__section__task-image">
             <p class="nav_section_task">${task.taskContent}</p>
             </span>`
-  workingTaskList.insertAdjacentHTML('afterbegin', newListItem);
+  workingTaskList.insertAdjacentHTML('beforebegin', newListItem);
   clearTaskInput();
   disableNavButtons();
 };
