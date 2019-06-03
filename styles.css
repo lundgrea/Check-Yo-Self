@@ -193,7 +193,17 @@ main {
   padding: 2em;
 }
 
-#main__p-prompt{
+#main__p-prompt {
+  border: 2px dotted lightgrey;
+  margin: auto;
+  text-align: center;
+  width: 100%;
+  background: #FAFDFF;
+  break-inside: avoid;
+  margin-bottom: 10px;
+    min-height: 120px;
+        padding: 25px;
+
 }
 
 
@@ -207,9 +217,7 @@ main {
   break-inside: avoid;
   padding: 3px;
   width: 100%;
-  margin: 10px;
-  /* box-sizing: content-box; 
-   object-fit: fill;*/
+  margin-bottom: 10px;
     min-height: 120px;
 }
 
@@ -264,7 +272,7 @@ footer {
   display: flex;
   border-top: 2px solid #C8D3D9;
   justify-content: space-between;
-  margin-top: 0px;
+  margin-top: 10px;
 }
 
 .main__article__footer__images {
@@ -302,9 +310,13 @@ footer {
   background: url(images/delete-active.svg) no-repeat;
 }
 
-.italics {
+.main__article__task-completed {
+  color: #58798B;
   font-style: italic;
+    margin-left: 15px;
+    margin-right: 15px;
 }
+
 
 /*----------- MEDIA QUERIES ------------*/
 

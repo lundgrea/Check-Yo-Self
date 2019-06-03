@@ -17,30 +17,7 @@ makeToDoButton.addEventListener('click', handleMakeTaskListButton);
 clearAllButton.addEventListener('click', clearButton);
 main.addEventListener('click', clickHandler);
 navSection.addEventListener('click', removeTaskFromWorkingList);
-window.addEventListener('load', mapLocalStorage(toDos))
-
-// function enableNavButtons() {
-//   makeToDoButton.disabled = false;
-//   clearAllButton.disabled = false;
-//   addTaskButton.disabled = false
-//   disableNavButtons();
-// }
-
-// function disableNavButtons() {
-//   if (toDoTitleInput.value === '' || taskInput.value === '') {
-//     makeToDoButton.disabled = true;
-//     clearAllButton.disabled = true;
-//     addTaskButton.disabled = true;
-//     // toggleMakeToDoButton()
-//   }
-// }
-
-// function toggleMakeToDoButton(){
-//   if (taskList.length === 0) {
-//     makeToDoButton.disabled = false;
-//   }
-// }
-
+window.addEventListener('load', mapLocalStorage(toDos));
 
 function enableNavButtons() {
   makeToDoButton.disabled = false;
@@ -62,60 +39,15 @@ function ifTaskArrayEmpty() {
 function ifTitleFull() {
   if (toDoTitleInput.value === ''  || taskInput.value === '') {
     makeToDoButton.disabled = true;
-    clearAllButton.disabled = true;
+    clearAllButton.disabled = false;
     addTaskButton.disabled = true;
   } else if (toDoTitleInput.value !== '' && taskInput.value !== '') {
     makeToDoButton.disabled = true;
-    clearAllButton.disabled = true;
+    clearAllButton.disabled = false;
     addTaskButton.disabled = false;
     ifTaskArrayEmpty()
   }
 }
-
- // } else if (taskList.length > 0)
- //    makeToDoButton.disabled = false;
-  // } else if (toDoTitleInput.value !== '' && taskList.length === 0) {
-  //   makeToDoButton.disabled = false
-  // }
-
-// function ifFieldsClear() {
-//   if (taskInput.value !== '') { 
-//     addTaskButton.disabled = false;
-//     makeToDoButton.disabled = true;
-//     clearAllButton.disabled = true;
-//   }
-// }
-
-// function ifTaskListExists(){
-//   if (taskList.length = 0 && toDoInput.value !== '') {
-//   makeToDoButton.disabled = true;
-//   } 
-// }
-
-
-//   } else if ()
-//   if (toDoTitleInput.value === '' || taskInput.value === '') {
-//     makeToDoButton.disabled = false;
-//     clearAllButton.disabled = true;
-//     addTaskButton.disabled = true;
-//   } else if (toDoTitleInput.value === '' || taskList.length === 0) {
-//     makeToDoButton.disabled = false;
-//   }
-// }
-
-
-
-// function tryThisEnabler(){
-//   if (toDoTitleInput.value === '' || taskInput.value === '') {
-//     makeToDoButton.disabled = true;
-//     clearAllButton.disabled = true;
-//     addTaskButton.disabled = true;
-// } else if (toDoTitleInput.value ==='' || taskList.length === 0) {
-//     makeToDoButton.disabled = true
-// } else if {
-
-// }
-
 
 function removeTaskFromWorkingList(event) {
   if (event.target.closest('.nav__section__task-image')) {
@@ -273,27 +205,31 @@ function populateTaskList(listedTasks){
   var currentItemList = '';
   for (var i =0; i < listedTasks.tasks.length; i++) {
   var completedStatus = listedTasks.tasks[i].completed ? 'checkbox-active.svg' : 'checkbox.svg';
+  var completedParagraphStyle = listedTasks.tasks[i].completed ? 'main__article__task-completed' : 'main__article__task-not-completed';
     currentItemList +=
       `<span class="main__article__header-span" data-id="${listedTasks.tasks[i].id}">
       <img alt="Completed Checkmark Area" class="main__article__section__image-checkbox" src="images/${completedStatus}">
-      <p>${listedTasks.tasks[i].taskContent}</p>
+      <p class="${completedParagraphStyle}">${listedTasks.tasks[i].taskContent}</p>
       </span>`
   }
- return currentItemList;
-}
+ return currentItemList;}
 
 
 function deleteToDoList(event) {
   if (event.target.closest('#main__article__footer__image-delete')) {
     var toDoId = getToDoUniqueId(event);
     var toDoIndex = getToDoIndex(toDoId);
-    event.target.closest('.card').remove();
-    toDos[toDoIndex].deleteFromStorage(toDoIndex);
-    reappearPrompt();
-  }
+    var cardToEnsureComplete = toDos[toDoIndex].tasks 
+    var filteredTasks = cardToEnsureComplete.filter(task => task.completed === true) 
+    if (filteredTasks.length === cardToEnsureComplete.length) {
+      event.target.closest('.card').remove();
+      toDos[toDoIndex].deleteFromStorage(toDoIndex);
+      reappearPrompt();
+  } else { 
+    alert('Please complete all tasks prior to deleting to do.')
 };
-
-
+}
+}
 
 function updateUrgencyButton(event) {
   if (event.target.closest('#main__article__footer__image-urgent')) {
@@ -322,9 +258,7 @@ function getTaskIndex(id, obj) {
   })
 };
 
-
 function updateCompletedButton(event) {
-  console.log(event.target)
   if (event.target.closest('.main__article__section__image-checkbox')) {
     var toDoId = getToDoUniqueId(event);
     var toDoIndex = getToDoIndex(toDoId);
@@ -334,19 +268,15 @@ function updateCompletedButton(event) {
     toDos[toDoIndex].updateTask(toDos, taskIndex);
     var check = toDoObject.tasks[taskIndex].completed ? 'images/checkbox-active.svg' : 'images/checkbox.svg'
     event.target.setAttribute('src', check);
-    updateCompletedStyle(event, toDoIndex, taskIndex);
-    // var toItalics = toDoObject.tasks[taskIndex].taskContent
-    // event.target.closest(p).classList.add('italics');
+    updateCompletedStyle(event);
   }
 }
 
-
-
 function updateCompletedStyle (event, toDoIndex, taskIndex){
-
-}
-
-
+  var completedItem = event.target.nextElementSibling;
+  completedItem.classList.toggle('main__article__task-completed');
+  completedItem.classList.toggle('main__article__task-not-completed');
+};
 
 
 
