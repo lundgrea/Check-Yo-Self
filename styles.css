@@ -70,7 +70,7 @@ h1 {
 /*---------------- NAV ----------------*/
 
 nav {
-  background-color: #587A8A;  
+  background-color: #587A8A;
 /*  width: 100%;
   height: 100vh;*/
   grid-area: nav;
@@ -78,21 +78,20 @@ nav {
 
 .nav__section{
   margin-top: 15px;
-  margin-left: 15px;
 }
 
 label {
    color: lightgrey;
    font-weight: 400;
    font-size: .8em;
-   margin-left: 10px;
+  margin-left: 23px;
    margin-bottom: 4px;
 }
 
 
 .nav__section-task-list {
 color: #FFFFFF;
-margin-left: 15px;
+margin-left: 16px;
 }
 
 .nav__section-task-item {
@@ -117,7 +116,7 @@ color: #ffffff;
   height: 40px;
   border: 1px solid #1F1F3D;
   border-radius: 3px;
-  margin-left: 10px;
+  margin-left: 20px;
   margin-bottom: 15px;
 }
 
@@ -129,7 +128,7 @@ color: #ffffff;
   font-size: 1.2em;
   text-align: center;
   margin: 15px;
-  margin-left: 12px;
+  margin-left: 20px;
   border: none;
   border-radius: 3px;
 
@@ -139,10 +138,10 @@ color: #ffffff;
 }
 
 .nav__section-div {
-  height: 50px;
-  display: flex;
-  width: 310px;
-}
+/*  height: 50px;
+*/  display: flex;
+    width: 320px;
+  }
 
 #nav__section__input-task-title {
   border-radius: 3px;
@@ -168,6 +167,7 @@ color: #ffffff;
 #nav__section__input-task-item{
 border-bottom-right-radius: 0px;
   border-top-right-radius: 0px;
+  border: none;
 }
 
 #nav__section__button-make-task-list {
