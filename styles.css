@@ -315,13 +315,36 @@ footer {
   font-style: italic;
     margin-left: 15px;
     margin-right: 15px;
+ /*    border: 2px solid #FFC30C;
+  break-inside: avoid;*/
 }
+
+.urgent__card{
+  background-color: #FFE79D;
+  border-color: #FFC30C;
+
+}
+
+.urgent__card footer{
+  border-top: 2px solid #FFC30C;
+
+}
+
+.urgent__card header {
+    border-bottom: 2px solid #FFC30C;
+
+}
+
+.urgent__card #main__article__footer__image-urgent {
+  background: url(images/urgent-active.svg) no-repeat;
+}
+
 
 
 /*----------- MEDIA QUERIES ------------*/
 
 
-/*@media screen and (max-width: 730px) {
+/*@media screen and (max-width: 750px) {
   .header_header{
      display: flex;
     flex-wrap: wrap;
