@@ -236,23 +236,40 @@ function updateUrgencyButton(event) {
   if (event.target.closest('#main__article__footer__image-urgent')) {
     var toDoId = getToDoUniqueId(event);
     var toDoIndex = getToDoIndex(toDoId);
-    updateUrgentStyle(event, toDoIndex);
     toDos[toDoIndex].updateToDo(toDos, toDoIndex);
+    var urgent = toDos[toDoIndex].urgent ? 'images/urgent-active.svg' : 'images/urgent.svg';
+    event.target.setAttribute('src', urgent)
+    updateUrgentStyle(event, toDoIndex);
   }
 }
 
 function updateUrgentStyle(event, index) {
-  var thisUrgent = event.target.closest('#main__article__footer__image-urgent')
-  if (toDos[index].urgent === true) {
-    console.log('inside true', thisUrgent)
-     thisUrgent.classList.add('main__article-urgent')
-     thisUrgent.classList.remove('main__article__footer__image-urgent')
-  } else {
-    console.log('inside false', thisUrgent)
-    thisUrgent.classList.add('main__article__footer__image-urgent')
-    thisUrgent.classList.remove('main__article-urgent')
-  }
-}
+  var updateCard = event.target.closest('.card');
+  console.log()
+  updateCard.classList.toggle('urgent__card');
+};
+//   var urgent = 'images/urgent-active.svg';
+//   var notUrgent = 'images/urgent.svg';
+//   var thisUrgent = event.target.closest('#main__article__footer__image-urgent')
+
+
+//   if (toDos[index].urgent === true) {
+//     thisUrgent.setAttribute('src', urgent)
+//     console.log('inside true', thisUrgent)
+//   } else {
+//     thisUrgent.setAttribute('src', notUrgent)
+//     console.log('inside false', thisUrgent)
+
+
+// }}
+  
+
+
+
+
+    // thisUrgent.classList.add('main__article__footer__image-urgent')
+    // thisUrgent.classList.remove('main__article-urgent')
+
 
 //       .setAttribute()
 

@@ -317,8 +317,20 @@ footer {
     margin-right: 15px;
 }
 
-.main_article-urgent{
-  background: url(images/urgent-active.svg) no-repeat;
+.urgent__card{
+  background-color: #FFE79D;
+  border-color: #FFC30C;
+
+}
+
+.urgent__card footer{
+  border-top: 2px solid #FFC30C;
+
+}
+
+.urgent__card header {
+    border-bottom: 2px solid #FFC30C;
+
 }
 
 
@@ -326,7 +338,7 @@ footer {
 /*----------- MEDIA QUERIES ------------*/
 
 
-/*@media screen and (max-width: 730px) {
+/*@media screen and (max-width: 750px) {
   .header_header{
      display: flex;
     flex-wrap: wrap;
