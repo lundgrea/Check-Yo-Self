@@ -178,9 +178,10 @@ function mapLocalStorage(oldToDos) {
 
 function appendToDoCard(toDo) {
   userPrompt.classList.add('hidden');
+  var cardUrgency = toDo.urgent ? 'main__article card urgent__card' : 'main__article card';
   var urgencyStatus = toDo.urgent ? 'images/urgent-active.svg' : 'images/urgent.svg'
   var newCard = 
-  `<article class="main__article card" data-id="${toDo.id}">
+  `<article class="${cardUrgency}" data-id="${toDo.id}">
         <header class="main__article__header">
           <h2 id="todo-title-output">${toDo.title}</h2>
         </header>
@@ -189,11 +190,11 @@ function appendToDoCard(toDo) {
         </section>
         <footer>
            <div class="main__article__footer__images main__article__footer__images-urgent">
-            <svg src="${urgencyStatus}" alt="Urgent Button" id="main__article__footer__image-urgent"></svg>
+            <svg src="${cardUrgency}" alt="Urgent Button" id="main__article__footer__image-urgent"></svg>
             <h3>URGENT</h3>
           </div>
           <div class="main__article__footer__images main__article__footer__images-delete">
-            <svg src="${urgencyStatus}" alt="Delete Button" id="main__article__footer__image-delete"></svg>
+            <svg alt="Delete Button" id="main__article__footer__image-delete"></svg>
             <h3>DELETE</h3>
           </div>
         </footer>

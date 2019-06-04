@@ -315,6 +315,8 @@ footer {
   font-style: italic;
     margin-left: 15px;
     margin-right: 15px;
+ /*    border: 2px solid #FFC30C;
+  break-inside: avoid;*/
 }
 
 .urgent__card{
