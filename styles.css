@@ -317,6 +317,11 @@ footer {
     margin-right: 15px;
 }
 
+.main_article-urgent{
+  background: url(images/urgent-active.svg) no-repeat;
+}
+
+
 
 /*----------- MEDIA QUERIES ------------*/
 

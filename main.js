@@ -178,7 +178,7 @@ function mapLocalStorage(oldToDos) {
 
 function appendToDoCard(toDo) {
   userPrompt.classList.add('hidden');
-  var urgentStatus = toDo.urgent ? 'urgent-active.svg' : 'urgent.svg'; 
+  var urgencyStatus = toDo.urgent ? 'images/urgent-active.svg' : 'images/urgent.svg'
   var newCard = 
   `<article class="main__article card" data-id="${toDo.id}">
         <header class="main__article__header">
@@ -189,11 +189,11 @@ function appendToDoCard(toDo) {
         </section>
         <footer>
            <div class="main__article__footer__images main__article__footer__images-urgent">
-            <svg alt="Urgent Button" id="main__article__footer__image-urgent"></svg>
+            <svg src="${urgencyStatus}" alt="Urgent Button" id="main__article__footer__image-urgent"></svg>
             <h3>URGENT</h3>
           </div>
           <div class="main__article__footer__images main__article__footer__images-delete">
-            <svg alt="Delete Button" id="main__article__footer__image-delete"></svg>
+            <svg src="${urgencyStatus}" alt="Delete Button" id="main__article__footer__image-delete"></svg>
             <h3>DELETE</h3>
           </div>
         </footer>
@@ -201,7 +201,7 @@ function appendToDoCard(toDo) {
   mainContent.insertAdjacentHTML('afterbegin', newCard);
 };
 
-function populateTaskList(listedTasks){
+function populateTaskList(listedTasks) {
   var currentItemList = '';
   for (var i =0; i < listedTasks.tasks.length; i++) {
   var completedStatus = listedTasks.tasks[i].completed ? 'checkbox-active.svg' : 'checkbox.svg';
@@ -212,7 +212,8 @@ function populateTaskList(listedTasks){
       <p class="${completedParagraphStyle}">${listedTasks.tasks[i].taskContent}</p>
       </span>`
   }
- return currentItemList;}
+ return currentItemList;
+}
 
 
 function deleteToDoList(event) {
@@ -225,28 +226,77 @@ function deleteToDoList(event) {
       event.target.closest('.card').remove();
       toDos[toDoIndex].deleteFromStorage(toDoIndex);
       reappearPrompt();
-  } else { 
+    } else { 
     alert('Please complete all tasks prior to deleting to do.')
-};
-}
+    }
+  }
 }
 
 function updateUrgencyButton(event) {
   if (event.target.closest('#main__article__footer__image-urgent')) {
     var toDoId = getToDoUniqueId(event);
-    var toDoIndex = getToDoUniqueId(event);
-    var urgentStatus = 'images/urgent-active.svg';
-    var nonUrgent = document.querySelector(`.card[data-id="${toDoId}"] #main__article__footer__image-urgent`);
-    nonUrgent.src = urgentStatus;
-    toDos[toDoIndex].updateToDo();
-    if (toDos[toDoIndex].urgent === false) {
-      var clearUrgentStatus = 'images/urgent.svg';
-      nonUrgent.src = clearUrgentStatus;
-    } else {
-      nonUrgent.src = urgentStatus;
-    }
+    var toDoIndex = getToDoIndex(toDoId);
+    updateUrgentStyle(event, toDoIndex);
+    toDos[toDoIndex].updateToDo(toDos, toDoIndex);
   }
 }
+
+function updateUrgentStyle(event, index) {
+  var thisUrgent = event.target.closest('#main__article__footer__image-urgent')
+  if (toDos[index].urgent === true) {
+    console.log('inside true', thisUrgent)
+     thisUrgent.classList.add('main__article-urgent')
+     thisUrgent.classList.remove('main__article__footer__image-urgent')
+  } else {
+    console.log('inside false', thisUrgent)
+    thisUrgent.classList.add('main__article__footer__image-urgent')
+    thisUrgent.classList.remove('main__article-urgent')
+  }
+}
+
+//       .setAttribute()
+
+//     completedItem.classList.toggle('main__article__task-completed');  
+
+//     completedItem.classList.toggle('main__article__task-completed');
+
+ // var urgentToDo = toDos[toDoIndex].urgent ? 'images/urgent-active.svg' : 'images/urgent.svg'
+    // event.target.setAttribute('src', urgentToDo)
+
+// }
+// }
+
+
+    // var active = 'images/urgent-active.svg'
+    // var inactive = 'images/urgent.svg'
+
+    // var check = toDoObject.urgent ? active : inactive
+    // if (check === true) {
+    //   event.target.setAttribute('src', active)
+    // } else if (check !== true)
+    //   event.target.setAttribute('src', inactive)
+    // event.target.setAttribute('src', check)
+  
+
+
+  // updateUrgentStyle(event)
+
+// var urgentStatus = 'images/urgent-active.svg';
+    // var nonUrgent = document.querySelector(`.card[data-id="${toDoId}"] #main__article__footer__image-urgent`);
+    // nonUrgent.src = urgentStatus;
+// function updateUrgentStyle (event, toDoIndex, taskIndex){
+//  var urgentTask = event.target
+//  console.log(urgentTask)
+//  urgentTask.classList.toggle('new')
+// }
+//     if (toDos[toDoIndex].urgent === false) {
+//       var clearUrgentStatus = 'images/urgent.svg';
+//       nonUrgent.src = clearUrgentStatus;
+//     } else {
+//       nonUrgent.src = urgentStatus;
+//     }
+//   }
+// }
 
 function getTaskUniqueId(event) {
   return event.target.closest('.main__article__header-span').getAttribute('data-id');
@@ -272,7 +322,7 @@ function updateCompletedButton(event) {
   }
 }
 
-function updateCompletedStyle (event, toDoIndex, taskIndex){
+function updateCompletedStyle (event){
   var completedItem = event.target.nextElementSibling;
   completedItem.classList.toggle('main__article__task-completed');
   completedItem.classList.toggle('main__article__task-not-completed');
