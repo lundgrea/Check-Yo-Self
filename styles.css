@@ -333,6 +333,10 @@ footer {
 
 }
 
+.urgent__card #main__article__footer__image-urgent {
+  background: url(images/urgent-active.svg) no-repeat;
+}
+
 
 
 /*----------- MEDIA QUERIES ------------*/
