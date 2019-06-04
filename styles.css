@@ -340,6 +340,11 @@ footer {
 }
 
 
+.urgent__button {
+
+background-color: #EF4A23;
+border: 2px solid #752E1F
+}
 
 /*----------- MEDIA QUERIES ------------*/
 
