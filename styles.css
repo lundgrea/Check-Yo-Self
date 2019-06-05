@@ -377,6 +377,8 @@ grid-column-start: 1;
 h1{
       margin-top: 1px;
     text-align: center;
+        margin-bottom: 20px;
+
 
 }
 
@@ -394,7 +396,9 @@ h1{
 @media screen and (max-width: 650px) {
  
 
-
+.header__header {
+    height: 165px;
+  }
   body {
     display: grid;
 margin-left: 0px;
@@ -439,10 +443,6 @@ main {
 
  }
 
-
-#nav__section__input-task-item {
-
-}
  #nav__section__button-filter-by-urgency {
     margin-bottom: 35px;
     margin-top: 15px;
@@ -456,3 +456,11 @@ width: 300px;
 
 }
 }
+
+@media screen and (max-width: 450px) {
+
+  #header__input-search {
+    width: 300px;    }
+
+.header__div-search{
+      width: 300px;}
