@@ -19,9 +19,10 @@ body {
 
 
 input[type='text'] {
- font-size: 16px;
- padding: 4%;
+  font-size: 16px;
+  padding: 4%;
 }
+
 .header__header {
   align-items: center; 
   background-color: #1F1F3D;
@@ -386,7 +387,7 @@ footer {
       "nav"
       "main";
     grid-template-columns: 1fr;
-    grid-template-rows: 18%;
+    grid-template-rows: 22%;
     margin-left: 0px;
   }
 
@@ -402,6 +403,7 @@ footer {
 
   label {
     display: block;
+    margin-right: 240px;  
   }
 
   main {
