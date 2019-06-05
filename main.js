@@ -1,11 +1,11 @@
 var toDos = JSON.parse(localStorage.getItem('toDosArray')) || [];
-var taskList = []
+var taskList = [];
 var toDoTitleInput = document.getElementById('nav__section__input-task-title');
 var taskInput = document.getElementById('nav__section__input-task-item');
 var makeToDoButton = document.getElementById('nav__section__button-make-task-list');
 var clearAllButton = document.getElementById('nav__section__button-clear-all');
 var addTaskButton = document.getElementById('nav__section__button-add-task-item');
-var workingTaskList = document.getElementById('nav__section-task-list')
+var workingTaskList = document.getElementById('nav__section-task-list');
 var userPrompt = document.getElementById('main__p-prompt');
 var urgencyFilter = document.getElementById('nav__section__button-filter-by-urgency');
 var searchInput = document.getElementById('header__input-search');
@@ -20,9 +20,8 @@ clearAllButton.addEventListener('click', clearButton);
 main.addEventListener('click', clickHandler);
 urgencyFilter.addEventListener('click', filterByUrgency);
 navSection.addEventListener('click', removeTaskFromWorkingList);
-searchInput.addEventListener('keyup', searchFunction)
+searchInput.addEventListener('keyup', searchFunction);
 window.addEventListener('load', mapLocalStorage(toDos));
-
 
 function enableNavButtons() {
   makeToDoButton.disabled = false;
@@ -37,19 +36,20 @@ function disableNavButtons() {
 };
 
 function ifTaskArrayEmpty() {
-  if (taskList.length > 0)
+  if (taskList.length > 0) {
     makeToDoButton.disabled = false;
+  }
 };
 
 function enableFilterButton() {
   if (toDos.length > 0) {
-    urgencyFilter.disabled = false
+    urgencyFilter.disabled = false;
   }
 };
 
 function disabledFilterButton() {
   if (toDos.length === 0) {
-    urgencyFilter.disabled = true
+    urgencyFilter.disabled = true;
   }
 };
 
@@ -62,43 +62,43 @@ function ifTitleFull() {
     makeToDoButton.disabled = true;
     clearAllButton.disabled = false;
     addTaskButton.disabled = false;
-    ifTaskArrayEmpty()
+    ifTaskArrayEmpty();
   }
-}
+};
 
 function removeTaskFromWorkingList(event) {
   if (event.target.closest('.nav__section__task-image')) {
     var taskId = getSpecificTaskId(event);
-    var taskIndex = getSpecificIndexId(taskId)
+    var taskIndex = getSpecificIndexId(taskId);
     event.target.closest('.nav__section-task-item').remove();
-    taskList.splice(taskIndex, 1)
+    taskList.splice(taskIndex, 1);
     disableNavButtons();
   }
-}
+};
 
 function getSpecificTaskId(event) {
-  return event.target.closest('.nav__section-task-item').getAttribute('data-id')
-}
+  return event.target.closest('.nav__section-task-item').getAttribute('data-id');
+};
 
 function getSpecificIndexId(id) {
   return taskList.findIndex(function(arrayObj) {
-  return arrayObj.id == parseInt(id)
+  return arrayObj.id == parseInt(id);
   })
 };
 
 function clearTaskInput() {
   taskInput.value = '';
-}
+};
 
 function clearButton() {
   event.preventDefault();
   toDoTitleInput.value = '';
-  taskInput.value = ''
-  workingTaskList.innerHTML = ''
+  taskInput.value = '';
+  workingTaskList.innerHTML = '';
   makeToDoButton.disabled = true;
   clearAllButton.disabled = true;
   addTaskButton.disabled = true;
-}
+};
 
 function createTaskObject() {
   event.preventDefault();
@@ -108,10 +108,10 @@ function createTaskObject() {
     completed: false
   };
   appendTaskToList(newTask);
-  taskList.push(newTask)
-  return newTask
-  ifTaskArrayEmpty()
-}
+  taskList.push(newTask);
+  return newTask;
+  ifTaskArrayEmpty();
+};
 
 function clearFields() {
   toDoTitleInput.value = '';
@@ -150,7 +150,7 @@ function handleMakeTaskListButton() {
   disableNavButtons();
   enableFilterButton();
   reappearPrompt();
-}
+};
 
 function reappearPrompt() {
   if (toDos.length === 0) {
@@ -162,7 +162,7 @@ function clickHandler(event) {
   deleteToDoList(event);
   updateUrgencyButton(event)
   updateCompletedButton(event)
-}
+};
 
 function getToDoUniqueId(event) {
   return event.target.closest('.card').getAttribute('data-id');
@@ -173,7 +173,6 @@ function getToDoIndex(id) {
   return arrayObj.id == parseInt(id);
   })
 };
-
 
 function appendTaskToList(task) {
   var taskId = task.id;
@@ -232,8 +231,7 @@ function populateTaskList(listedTasks) {
       </span>`
   }
  return currentItemList;
-}
-
+};
 
 function deleteToDoList(event) {
   if (event.target.closest('#main__article__footer__image-delete')) {
@@ -250,8 +248,7 @@ function deleteToDoList(event) {
     }
   }
   disabledFilterButton();
-
-}
+};
 
 function updateUrgencyButton(event) {
   if (event.target.closest('#main__article__footer__image-urgent')) {
@@ -262,15 +259,13 @@ function updateUrgencyButton(event) {
     event.target.setAttribute('src', urgent)
     updateUrgentStyle(event, toDoIndex);
   }
-}
+};
 
 function updateUrgentStyle(event, index) {
   var updateCard = event.target.closest('.card');
   console.log()
   updateCard.classList.toggle('urgent__card');
 };
-
-
 
 function searchFunction(event) {
   var searchText = event.target.value.toLowerCase()
@@ -281,9 +276,7 @@ function searchFunction(event) {
   searchResults.map(function(todo){
   appendToDoCard(todo) 
   })
-}
-
-
+};
 
 function filterByUrgency(event) {
   console.log('im listening')
@@ -302,89 +295,11 @@ function filterByUrgency(event) {
       appendToDoCard(arrayObj);
   })
   }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-//   var urgent = 'images/urgent-active.svg';
-//   var notUrgent = 'images/urgent.svg';
-//   var thisUrgent = event.target.closest('#main__article__footer__image-urgent')
-
-
-//   if (toDos[index].urgent === true) {
-//     thisUrgent.setAttribute('src', urgent)
-//     console.log('inside true', thisUrgent)
-//   } else {
-//     thisUrgent.setAttribute('src', notUrgent)
-//     console.log('inside false', thisUrgent)
-
-
-// }}
-  
-
-
-
-
-    // thisUrgent.classList.add('main__article__footer__image-urgent')
-    // thisUrgent.classList.remove('main__article-urgent')
-
-
-//       .setAttribute()
-
-//     completedItem.classList.toggle('main__article__task-completed');  
-
-//     completedItem.classList.toggle('main__article__task-completed');
-
- // var urgentToDo = toDos[toDoIndex].urgent ? 'images/urgent-active.svg' : 'images/urgent.svg'
-    // event.target.setAttribute('src', urgentToDo)
-
-// }
-// }
-
-
-    // var active = 'images/urgent-active.svg'
-    // var inactive = 'images/urgent.svg'
-
-    // var check = toDoObject.urgent ? active : inactive
-    // if (check === true) {
-    //   event.target.setAttribute('src', active)
-    // } else if (check !== true)
-    //   event.target.setAttribute('src', inactive)
-    // event.target.setAttribute('src', check)
-  
-
-
-  // updateUrgentStyle(event)
-
-// var urgentStatus = 'images/urgent-active.svg';
-    // var nonUrgent = document.querySelector(`.card[data-id="${toDoId}"] #main__article__footer__image-urgent`);
-    // nonUrgent.src = urgentStatus;
-// function updateUrgentStyle (event, toDoIndex, taskIndex){
-//  var urgentTask = event.target
-//  console.log(urgentTask)
-//  urgentTask.classList.toggle('new')
-// }
-//     if (toDos[toDoIndex].urgent === false) {
-//       var clearUrgentStatus = 'images/urgent.svg';
-//       nonUrgent.src = clearUrgentStatus;
-//     } else {
-//       nonUrgent.src = urgentStatus;
-//     }
-//   }
-// }
+};
 
 function getTaskUniqueId(event) {
   return event.target.closest('.main__article__header-span').getAttribute('data-id');
-}
+};
 
 function getTaskIndex(id, obj) {
   return obj.tasks.findIndex(function(arrayObj) {
@@ -404,65 +319,10 @@ function updateCompletedButton(event) {
     event.target.setAttribute('src', check);
     updateCompletedStyle(event);
   }
-}
+};
 
 function updateCompletedStyle (event){
   var completedItem = event.target.nextElementSibling;
   completedItem.classList.toggle('main__article__task-completed');
   completedItem.classList.toggle('main__article__task-not-completed');
 };
-
-
-
-
-
-
-// function enableMakeTaskListButton() {
-//   makeToDoButton.disabled = false;
-//   disableMakeTaskListButton();
-// }
-
-// function disableMakeTaskListButton() {
-//   if (toDoTitleInput.value === '') {
-//     makeToDoButton.disabled = true;
-//   }
-// }
-
-
-
-// function initializeObject(){
-//   event.preventDefault();
-//   titleInput = toDoTitleInput.value
-//   var toDoInitializer = {
-//     title: titleInput,
-//     tasks: []
-//   }
-//   var initializedToDo = toDoInitializer
-//   console.log('initializedObject for your eyes', initializedToDo)
-//   taskList = initializedToDo
-//   return taskList
-// }
-
-// function addTaskButtonHandler(event) {
-//   createTaskObject();
-//   taskInput.value = '';
-
-// }
-
-
-
-// function pushTaskIntoTaskList(createdTaskObject){
-//   taskList.push(createdTaskObject)
-// }
-// function updateInitializedObject(newTaskForToDo){
-// taskList.push(newTaskForToDo)
-//   var updatedToDoInitializer() = {
-//     title: toDoToBeInitialized.title, 
-//     tasks: toDoToBeInitialized.value.push(newTaskForToDo)
-//   }
-//   return updatedToDoInitializer
-// }
-
-
-// toDoTitleInput.addEventListener('keyup', enableMakeTaskListButton);
-
