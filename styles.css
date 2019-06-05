@@ -81,7 +81,7 @@ label {
   font-size: .8em;
   font-weight: 400;
   margin-bottom: 4px;
-  margin-left: 23px;
+  margin-left: 20px;
 }
 
 .nav__section-task-list {
@@ -112,7 +112,8 @@ label {
   border: 1px solid #1F1F3D;
   height: 40px;
   margin-bottom: 15px;
-  margin-left: 20px;
+/*  margin-left: 20px;
+*/  margin-left: 15px;
   width: 300px;
 }
 
@@ -135,7 +136,7 @@ label {
 
 .nav__section-div {
   display: flex;
-  width: 320px;
+  width: 315px;
 }
 
 #nav__section__input-task-title {
@@ -185,7 +186,7 @@ main {
   columns: 2 250px;
   grid-area: main;
   height: auto;
-  padding: 2em;
+  padding: 1em;
 }
 
 #main__p-prompt {
@@ -338,7 +339,7 @@ footer {
       "header header"
       "nav main";
     grid-template-columns: 350px 1fr;
-    grid-template-rows: 18%;
+    grid-template-rows: 24%;
     height: 100vh;
     margin: 0;
     width: 100%;
