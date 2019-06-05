@@ -8,7 +8,7 @@ body {
   grid-template-areas: 
     "header header header"
     "nav main main";
-  grid-template-columns: 350px 1fr 1fr;
+  grid-template-columns: 340px 1fr 1fr;
   grid-template-rows: 10%;
   height: 100vh;
   margin: 0;
