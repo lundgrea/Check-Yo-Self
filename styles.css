@@ -118,8 +118,7 @@ label {
   border: 1px solid #1F1F3D;
   height: 40px;
   margin-bottom: 15px;
-/*  margin-left: 20px;
-*/  margin-left: 15px;
+  margin-left: 15px;
   width: 300px;
 }
 
@@ -151,13 +150,9 @@ label {
 
 #nav__section__button-add-task-item {
   background: #1F1F3D url(images/plus.svg) no-repeat;
-  border-bottom-right-radius: 0px;
-  border-bottom-right-radius: 3px;
-  border-top-right-radius: 3px;
   border-top-right-radius: 3px;
   border: none;
   height: 40px;  
-  padding: 1%;
   padding: 2%;
   width: 47px;
 }
@@ -176,9 +171,13 @@ label {
   margin-bottom: 5px;
 }
 
-#nav__section__button-clear-all, 
-#nav__section__button-filter-by-urgency  {
-  margin-bottom: 35px;
+#nav__section__button-clear-all {
+  margin-bottom: 25px;
+}
+
+#nav__section__button-filter-by-urgency {
+  margin-bottom: 25px;
+  margin-top: 25px;
 }
 
 .nav__section_button-bottom {
@@ -188,11 +187,11 @@ label {
 /*--------------- MAIN ----------------*/
 main {
   background-color: #F3F6F7;
-  column-gap: 1rem;
+  column-gap: 1.8rem;
   columns: 2 250px;
   grid-area: main;
   height: auto;
-  padding: 1em;
+  padding: 1.3em;
 }
 
 #main__p-prompt {
