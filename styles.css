@@ -396,6 +396,9 @@ h1{
 @media screen and (max-width: 650px) {
  
 
+label{
+     margin-left: 0px
+}
 .header__header {
     height: 165px;
   }
