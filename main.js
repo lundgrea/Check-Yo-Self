@@ -23,7 +23,6 @@ navSection.addEventListener('click', removeTaskFromWorkingList);
 searchInput.addEventListener('keyup', searchFunction);
 window.addEventListener('load', mapLocalStorage(toDos));
 
-
 function enableNavButtons() {
   makeToDoButton.disabled = false;
   clearAllButton.disabled = false;
@@ -223,7 +222,7 @@ function appendToDoCard(toDo) {
 
 function populateTaskList(listedTasks) {
   var currentItemList = '';
-  for (var i =0; i < listedTasks.tasks.length; i++) {
+  for (var i = 0; i < listedTasks.tasks.length; i++) {
   var completedStatus = listedTasks.tasks[i].completed ? 'checkbox-active.svg' : 'checkbox.svg';
   var completedParagraphStyle = listedTasks.tasks[i].completed ? 'main__article__task-completed' : 'main__article__task-not-completed';
     currentItemList +=
