@@ -1,26 +1,44 @@
+
+$(document).ready(function() {
+  $('#nav__section__input-task-title').on('click', enableNavButtons);
+  $('#nav__section__button-make-task-list').on('click', handleMakeTaskListButton);
+  $('#nav__section__button-clear-all').on('click', clearButton);
+  $('#main').on('click', clickHandler);
+  $('#nav__section__button-filter-by-urgency').on('click', filterByUrgency);
+  $('#nav').on('click', removeTaskFromWorkingList);
+  $('#nav__section__input-task-title').on('keyup', enableNavButtons);
+  $('#nav__section__input-task-item').on('keyup', enableNavButtons);
+  $('#header__input-search').on('keyup', searchFunction)
+
+});
+
+
+
 var toDos = JSON.parse(localStorage.getItem('toDosArray')) || [];
 var taskList = [];
-var toDoTitleInput = document.getElementById('nav__section__input-task-title');
-var taskInput = document.getElementById('nav__section__input-task-item');
-var makeToDoButton = document.getElementById('nav__section__button-make-task-list');
-var clearAllButton = document.getElementById('nav__section__button-clear-all');
-var addTaskButton = document.getElementById('nav__section__button-add-task-item');
+// var toDoTitleInput = document.getElementById('nav__section__input-task-title');
+// var taskInput = document.getElementById('nav__section__input-task-item');
+// var makeToDoButton = document.getElementById('nav__section__button-make-task-list');
+// var clearAllButton = document.getElementById('nav__section__button-clear-all');
+// var addTaskButton = document.getElementById('nav__section__button-add-task-item');
 var workingTaskList = document.getElementById('nav__section-task-list')
 var userPrompt = document.getElementById('main__p-prompt');
-var urgencyFilter = document.getElementById('nav__section__button-filter-by-urgency');
-var searchInput = document.getElementById('header__input-search');
-var mainContent = document.getElementById('main');
-var navSection = document.getElementById('nav');
+// var urgencyFilter = document.getElementById('nav__section__button-filter-by-urgency');
+// var searchInput = document.getElementById('header__input-search');
+// var mainContent = document.getElementById('main');
+// var navSection = document.getElementById('nav');
 
-toDoTitleInput.addEventListener('keyup', enableNavButtons);
-taskInput.addEventListener('keyup', enableNavButtons);
-addTaskButton.addEventListener('click', createTaskObject);
-makeToDoButton.addEventListener('click', handleMakeTaskListButton);
-clearAllButton.addEventListener('click', clearButton);
-main.addEventListener('click', clickHandler);
-urgencyFilter.addEventListener('click', filterByUrgency);
-navSection.addEventListener('click', removeTaskFromWorkingList);
-searchInput.addEventListener('keyup', searchFunction);
+
+
+// toDoTitleInput.addEventListener('keyup', enableNavButtons);
+// taskInput.addEventListener('keyup', enableNavButtons);
+// addTaskButton.addEventListener('click', createTaskObject);
+// makeToDoButton.addEventListener('click', handleMakeTaskListButton);
+// clearAllButton.addEventListener('click', clearButton);
+// main.addEventListener('click', clickHandler);
+// urgencyFilter.addEventListener('click', filterByUrgency);
+// navSection.addEventListener('click', removeTaskFromWorkingList);
+// searchInput.addEventListener('keyup', searchFunction);
 window.addEventListener('load', mapLocalStorage(toDos));
 
 function enableNavButtons() {
@@ -271,11 +289,11 @@ function updateUrgentStyle(event, index) {
 function searchFunction(event) {
   var searchText = event.target.value.toLowerCase();
   var searchResults = toDos.filter(function(arrayObj) {
-  return arrayObj.title.toLowerCase().includes(searchText);
+    return arrayObj.title.toLowerCase().includes(searchText);
 })
   mainContent.innerHTML = '';
   searchResults.map(function(todo) {
-  appendToDoCard(todo);
+    appendToDoCard(todo);
   })
 };
 
@@ -287,7 +305,7 @@ function filterByUrgency(event) {
     })
     mainContent.innerHTML = '';
     filterResults.map(function(toDo) {
-    appendToDoCard(toDo);
+     appendToDoCard(toDo);
     })  
   } else {
     mainContent.innerHTML = '';
